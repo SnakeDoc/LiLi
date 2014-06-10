@@ -1,0 +1,18 @@
+diff -Naur rc.d/startup rc.d_2/startup
+--- rc.d/startup	2014-02-03 23:07:21.450052488 -0800
++++ rc.d_2/startup	2014-02-05 00:00:25.360137504 -0800
+@@ -91,4 +91,14 @@
+ 	fi
+ done
+ 
++# clear startup stuff
++clear
++
++# display greeting screen
++echo "LiLi GNU/Linux System"
++echo ""
++echo `cat /etc/lili-release`
++echo `uname -a`
++echo "eth0 addr:" `ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
++
+ exit 0

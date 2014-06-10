@@ -1,0 +1,210 @@
+# Common functions
+
+execute_as_user() {
+
+    su -c "$1" -s /bin/bash $2
+
+}
+
+check_status() {
+	local ERR=$?
+	echo -en "\e[65G"
+        echo -en "["
+	if [ $ERR = 0 ]; then
+		echo -en "\e[1;92m"
+                echo -en "  OK  "
+	else
+		echo -en "\e[1;91m"
+                echo -en "FAILED"
+	fi
+	echo -en "\e[0;0m"
+        echo -e "]"
+}
+
+OK=0
+FAIL=1
+
+show_status() {
+        echo -en "\e[65G"
+        echo -en "["
+        if [ $1 = 0 ]; then
+                echo -en "\e[1;92m"
+                echo -en "  OK  "
+        else
+                echo -en "\e[1;91m"
+                echo -en "FAILED"
+        fi
+        echo -en "\e[0;0m"
+        echo -e "]"
+}
+
+error() {
+    echo "$1"
+    echo "Error Code: $3"
+    echo -n "Build $2: "
+    show_status ${FAIL}
+}
+
+cleanup_targetfs() {
+
+    rm -rf ${CLFS_TARGETFS}
+
+}
+
+cleanup_sources() {
+
+    rm -rf ${CLFS_SOURCES}
+
+}
+
+cleanup_tools() {
+
+    rm -rf ${CLFS_TOOLS}
+
+}
+
+cleanup_build() {
+
+    rm -rf ${CLFS_BUILD}
+
+}
+
+cleanup_all() {
+
+    rm -rf ${CLFS}
+
+}
+
+locate_package() {
+    echo $(find ${PACKAGES}/ -type d -name "$1")
+}
+
+#process_packages() {
+#    while IFS=',' read -ra ADDR; do
+#        for subpkg in "${ADDR[@]}"; do
+#            pkg_dir=`find ${PACKAGES}/ -type d -name ${subpkg}`
+#            echo "Processing package ${subpkg} from location ${pkg_dir}"
+#            . ${pkg_dir}/package.mk
+#        done
+#    done <<< $1
+#}
+
+function build_package {
+    case "$1" in
+        binutils)
+            # instructions here
+            echo "Processing package $1"
+            #build_depends $1
+            ;;
+
+        gmp)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        mpc)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        mpfr)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        musl-libc)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        linux)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        busybox)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        e2fsprogs)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        dropbear)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        iana-etc)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        wireless-tools)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        zlib)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        bootscripts)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        firmware)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        gcc)
+            # inst. here
+            echo "Processing package $1"
+            build_depends gcc
+            #./scripts/packages/lang/gcc.sh
+            ;;
+
+        tools)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        toolchain)
+            # inst. here
+            echo "Processing package $1"
+            ;;
+
+        *)
+            echo "$1 is not a supported package!"
+            exit 1
+    esac
+}
+
+function build_depends {
+    while IFS=',' read -ra ADDR; do
+        for subpkg in "${ADDR[@]}"; do
+            pkg_dir=`find ${PACKAGES}/ -type d -name ${subpkg}`
+
+            echo "Processing package ${subpkg} from location ${pkg_dir}"
+            . ${pkg_dir}/package.mk
+
+            if [ ! -z ${PKG_DEPENDS} ]
+            then
+
+                build_depends ${PKG_DEPENDS}
+
+            else
+
+                build_package ${PKG_NAME}
+
+            fi
+
+        done
+    done <<< $1
+}
+

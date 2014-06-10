@@ -1,0 +1,49 @@
+# Configurations
+
+OS_NAME="LiLi"
+VERSION="0.1 (Alpha)"
+
+unset CFLAGS
+unset CXXFLAGS
+
+BUILD_ROOT=$(pwd)
+
+SCRIPTS=$(pwd)/scripts
+PACKAGES=$(pwd)/packages
+SOURCES=$(pwd)/sources
+
+COMPILER_SCRIPTS=${SCRIPTS}/compiler
+TOOLCHAIN_DEPS=${PACKAGES}/toolchain
+SYSTEM_DEPS=${PACKAGES}/system
+
+SYSTEM_SCRIPTS=${SCRIPTS}/system
+
+CLFS=${BUILD_ROOT}/target
+CLFS_TARGETFS=${CLFS}/targetfs
+CLFS_SOURCES=${CLFS}/sources
+CLFS_TOOLS=${CLFS}/cross-tools
+CLFS_ENV_PATH=${CLFS_TOOLS}/bin
+CLFS_BUILD=${CLFS}/build
+
+KERNEL_VERSION="3.12"
+
+CLFS_FLOAT="hard"
+CLFS_FPU="vfp"
+CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+CLFS_TARGET="arm-linux-musleabihf"
+CLFS_ARCH="arm"
+CLFS_ARM_ARCH="armv6zk"
+CLFS_ENDIAN="little"
+CLFS_ABI="aapcs-linux"
+
+# Overclocking
+
+# 0 = disable | 1 = enable
+OVERCLOCK=1
+
+ARM_FREQ=800
+ARM_FREQ_MIN=100
+CORE_FREQ=300
+CORE_FREQ_MIN=75
+SDRAM_FREQ=400
+OVER_VOLTAGE=0

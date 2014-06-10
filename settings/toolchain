@@ -1,0 +1,24 @@
+# Toolchain Environment Variables
+
+. settings/config
+
+# unset existing env vars
+unset CC
+unset CXX
+unset AR
+unset AS
+unset LD
+unset RANLIB
+unset READELF
+unset STRIP
+
+# set our toolchain as current env vars
+export CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc"
+export CXX="${CLFS_ENV_PATH}/${CLFS_TARGET}-g++"
+export AR="${CLFS_ENV_PATH}/${CLFS_TARGET}-ar"
+export AS="${CLFS_ENV_PATH}/${CLFS_TARGET}-as"
+export LD="${CLFS_ENV_PATH}/${CLFS_TARGET}-ld"
+export RANLIB="${CLFS_ENV_PATH}/${CLFS_TARGET}-ranlib"
+export READELF="${CLFS_ENV_PATH}/${CLFS_TARGET}-readelf"
+export STRIP="${CLFS_ENV_PATH}/${CLFS_TARGET}-strip"
+

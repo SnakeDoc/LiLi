@@ -1,0 +1,77 @@
+When unpacking the archive, make sure to preserve permissions.
+
+tar -xvjpf <download>.tar.bz2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To copy to SD card:
+
+1) fdisk -l
+
+2) find your SD card (if using a USB adapter, it may appear as /dev/sda instead of /dev/mmcblk0)
+    ****Please note, this will be destructive to all data on your SD card!
+    - To be certain you have the correct device, try using the 'fdisk -l' command without
+        the SD card plugged in --> plug in your SD card --> run 'fdisk -l' again and compare the output.
+    - The new device listed in the secound output will likely be your SD card.
+    - Depending on how your SD card is plugged into your computer, it may appear in a few different ways.
+    - If plugged in via a USB adapter, it will likely appears like just another hard disk drive in your
+        system, such as /dev/sdc or /dev/sdb, etc. Be careful, because your Operating System hard disk
+        drive will likely appear as /dev/sda or similar, **do not mix them up!**
+    - If you plugged in directly to a card reader, it may appear as a mmc device, such as /dev/mmcblk0
+        or /dev/mmcblk1, or similar.
+        
+    ** Again, take care in this step to find your SD card. Proceeding will destroy all data on the chosen device! **
+
+3) fdisk /dev/sdc
+
+  sequence:
+
+    n,p,1,[ENTER],+128M,n,p,2,[ENTER],[ENTER],t,1,c,a,1,p,w
+
+    This creates two new partitions, the first as a FAT32 boot partition of 128MB,
+      and the second as an EXT4 partition filling the remainder of the SD card's capacity.
+    The 'p' switch will print the pending changes for review. 'w' will write the changes.
+    
+4) Format our partitions:
+
+    mkfs.vfat /dev/sdc1
+    mkfs.ext4 /dev/sdc2
+
+5) Make a working directory:
+
+    mkdir -pv lili_staging/rootfs
+    cd lili_staging/
+
+6) Mount our EXT4 partition:
+
+    mount /dev/sdc2 rootfs/
+
+7) Make out boot/ directory
+
+    mkdir -pv rootfs/boot
+
+8) Mount our FAT32 boot partition:
+
+    mount -t vfat /dev/sdc1 rootfs/boot/
+
+9) Copy our root filesystem to our mounted SD cart:
+
+    cp -arv <path>/<to>/<unpacked>/<download>/* rootfs/
+
+    ex: cp -arv /home/jason/20140116-lili-0.1.0-armv6zk-rpi/* rootfs/
+
+    The 'a' switch "archives" the files and directories, meaning it preserves file permissions and special permissions.
+    The 'r' switch is for recursive because we're copying directories as well as files.
+    The 'v' switch is for verbose mode, so we can see what it's doing.
+
+10) Use the 'sync' command to ensure all data has been copied over and our hard drive buffers flushed.
+
+    sync
+
+11) Un-mount our partitions in the correct order:
+
+    umount rootfs/boot/
+    umount rootfs/
+
+12) Pop the SD card into your Raspberry Pi and enjoy!
+
