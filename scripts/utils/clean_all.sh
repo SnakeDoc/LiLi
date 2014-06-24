@@ -4,9 +4,9 @@
 
 # Clean all directories
 
-${SCRIPTS}/clean_sources.sh
-${SCRIPTS}/clean_compiler.sh
-${SCRIPTS}/clean_system.sh
+${SCRIPTS}/utils/clean_sources.sh
+${SCRIPTS}/utils/clean_compiler.sh
+${SCRIPTS}/utils/clean_system.sh
 
 exit 0
 
