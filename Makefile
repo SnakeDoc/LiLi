@@ -1,29 +1,25 @@
 # Makefile for LiLi
 
-BUILD_DIR=target
 LOG="runtime.log"
 
-ROTATE_LOG:=$(shell bash settings/rotate_log.sh)
+ROTATE_LOG:=$(shell bash ./scripts/utils/rotate_log.sh)
 
 all: clean-all compiler system
 
 compiler: clean-compiler
-	time ./scripts/compiler.sh 2>&1 | tee ${LOG}
-
-release-compiler: compiler
-	
+	/bin/bash -c "time ./scripts/compiler.sh 2>&1 | tee ${LOG}"
 
 system: clean-system
-	time ./scripts/system.sh 2>&1 | tee ${LOG}
+	/bin/bash -c "time ./scripts/system.sh 2>&1 | tee ${LOG}"
 
 clean-sources:
-	time rm -rf ${BUILD_DIR}/sources/*
+	/bin/bash -c "time ./scripts/utils/clean_sources.sh"
 
 clean-compiler:
-	time rm -rf ${BUILD_DIR}/cross-tools/*
+	/bin/bash -c "time ./scripts/utils/clean_compiler.sh"
 
 clean-system:
-	time rm -rf ${BUILD_DIR}/targetfs/*
+	/bin/bash -c "time ./scripts/utils/clean_system.sh"
 
 clean-all:
-	time rm -rf ${BUILD_DIR}/*
+	/bin/bash -c "time ./scripts/utils/clean_all.sh"
