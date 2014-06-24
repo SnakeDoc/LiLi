@@ -25,8 +25,6 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 echo "This script requires sudo access!"
 echo ""
-echo "Manual password entry will be required if visudo not configured otherwise!"
-echo ""
 
 echo "Changing ownership of filesystem to root"
 sudo chown -Rv root:root ${CLFS_TARGETFS}
