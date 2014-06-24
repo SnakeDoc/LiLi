@@ -26,9 +26,8 @@ function error() {
 }
 
 execute_script() {
-    echo "Executing script: $2"
-    ${COMPILER_SCRIPTS}/$2
-    RETURN_VAL=$?
+    echo "Executing as user: $2"
+    RETURN=$(execute_as_user $3 ${COMPILER_SCRIPTS}/$2)
     if [ ${RETURN_VAL} -ne ${OK} ]
     then
         error $1 $2 ${RETURN_VAL}
@@ -50,7 +49,7 @@ build_package() {
                  )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
-                execute_script $1 ${SCRIPT_NAME}
+                execute_script $1 ${SCRIPT_NAME} ${SUDO_USER}
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status ${OK}

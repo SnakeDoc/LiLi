@@ -27,9 +27,8 @@ error() {
 }
 
 execute_script() {
-    echo "Executing script: $2"
-    ${SYSTEM_SCRIPTS}/$2
-    RETURN=$?
+    echo "Executing as user $3: $2"
+    RETURN=$(execute_as_user $3 ${SYSTEM_SCRIPTS}/$2)
     if [ ${RETURN} -ne ${OK} ]
     then
         error $1 $2 ${RETURN}
@@ -52,19 +51,35 @@ build_package() {
                 "dropbear.sh" \
                 "wireless_tools.sh" \
                 "e2fsprogs.sh" \
-                "shared_libs.sh" \
-                "finalize.sh" \
-                "archive.sh"
+                "shared_libs.sh"
             )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
-                execute_script $1 ${SCRIPT_NAME}
+                execute_script $1 ${SCRIPT_NAME} ${SUDO_USER}
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status ${OK}
                 echo ""
             done
-            # TODO package system into tarball
+
+            # finalize base system
+            echo ""
+            echo "Finalizing base system"
+            execute_script $1 "finalize.sh" ${USER}
+            echo ""
+            echo -n "finalize.sh"
+            show_status ${OK}
+            echo ""
+
+            # package into tarball
+            echo ""
+            echo "Packing base system"
+            execute_script $1 "archive.sh" ${USER}
+            echo ""
+            echo -n "archive.sh"
+            show_status ${OK}
+            echo ""
+
             echo ""
             echo -n "Build System: "
             show_status ${OK}

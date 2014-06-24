@@ -25,8 +25,6 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 echo "This script requires sudo access!"
 echo ""
-echo "Manual password entry will be required if visudo not configured otherwise!"
-echo ""
 
 mkdir -pv ${CLFS}/archives
 
@@ -37,7 +35,7 @@ cd ${CLFS_TARGETFS}/
 SHORT_VERSION=$(echo ${VERSION} | cut -d " " -f 1)
 ARCHIVE_NAME="${BUILD_DATE}-${OS_NAME,,}-${SHORT_VERSION}-${CLFS_ARM_ARCH}-rpi.tar.bz2"
 
-sudo tar jcfv ${CLFS}/archives/${ARCHIVE_NAME} *
+tar jcfv ${CLFS}/archives/${ARCHIVE_NAME} *
 fail_on_error $?
 
 echo ""

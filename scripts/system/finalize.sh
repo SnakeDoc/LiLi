@@ -27,13 +27,13 @@ echo "This script requires sudo access!"
 echo ""
 
 echo "Changing ownership of filesystem to root"
-sudo chown -Rv root:root ${CLFS_TARGETFS}
+chown -Rv root:root ${CLFS_TARGETFS}
 fail_on_error $?
 
 echo "Chaning group of utmp and lastlog log files"
-sudo chgrp -v 13 ${CLFS_TARGETFS}/var/run/utmp
+chgrp -v 13 ${CLFS_TARGETFS}/var/run/utmp
 fail_on_error $?
-sudo chgrp -v 13 ${CLFS_TARGETFS}/var/log/lastlog
+chgrp -v 13 ${CLFS_TARGETFS}/var/log/lastlog
 fail_on_error $?
 
 exit 0 # normal exit
