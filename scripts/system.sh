@@ -55,7 +55,7 @@ build_package() {
             )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
-                execute_script $1 ${SCRIPT_NAME} ${SUDO_USER}
+                execute_script $1 ${SCRIPT_NAME} $(logname)
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status ${OK}
@@ -65,7 +65,7 @@ build_package() {
             # finalize base system
             echo ""
             echo "Finalizing base system"
-            execute_script $1 "finalize.sh" ${USER}
+            execute_script $1 "finalize.sh" $(whoami)
             echo ""
             echo -n "finalize.sh"
             show_status ${OK}
@@ -74,7 +74,7 @@ build_package() {
             # package into tarball
             echo ""
             echo "Packing base system"
-            execute_script $1 "archive.sh" ${USER}
+            execute_script $1 "archive.sh" $(whoami)
             echo ""
             echo -n "archive.sh"
             show_status ${OK}

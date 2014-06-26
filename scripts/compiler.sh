@@ -49,7 +49,7 @@ build_package() {
                  )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
-                execute_script $1 ${SCRIPT_NAME} ${SUDO_USER}
+                execute_script $1 ${SCRIPT_NAME} $(logname)
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status ${OK}
@@ -67,12 +67,12 @@ build_package() {
 }
 
 # create base directory
-mkdir -pv ${CLFS}
+execute_as_user $(logname) "mkdir -pv ${CLFS}"
 # Make source dir
-mkdir -pv ${CLFS_SOURCES}
+execute_as_user $(logname) "mkdir -pv ${CLFS_SOURCES}"
 # create sysroot directory
-mkdir -pv ${CLFS_TOOLS}/${CLFS_TARGET}
-ln -sfv . ${CLFS_TOOLS}/${CLFS_TARGET}/usr
+execute_as_user $(logname) "mkdir -pv ${CLFS_TOOLS}/${CLFS_TARGET}"
+execute_as_user $(logname) "ln -sfv . ${CLFS_TOOLS}/${CLFS_TARGET}/usr"
 
 # toolchain
 . ${TOOLCHAIN_DEPS}/package.mk
@@ -82,7 +82,7 @@ build_toolchain ${PKG_DEPENDS}
 # test toolchain
 echo ""
 echo "Testing toolchain..."
-${COMPILER_SCRIPTS}/test_compiler.sh
+execute_as_user $(logname) "${COMPILER_SCRIPTS}/test_compiler.sh"
 
 # finish script
 echo ""

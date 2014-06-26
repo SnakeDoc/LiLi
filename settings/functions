@@ -2,7 +2,7 @@
 
 execute_as_user() {
 
-    su -c "$1" -s /bin/bash $2 && echo $?
+    su "$1" -s /bin/bash -c "$2;exit \$?"
 
 }
 
