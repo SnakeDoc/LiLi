@@ -27,10 +27,9 @@ function error() {
 
 execute_script() {
     echo "Executing as user: $2"
-    RETURN=$(execute_as_user $3 ${COMPILER_SCRIPTS}/$2)
-    if [ ${RETURN_VAL} -ne ${OK} ]
+    if ! execute_as_user $3 ${COMPILER_SCRIPTS}/$2
     then
-        error $1 $2 ${RETURN_VAL}
+        error $1 $2 $?
     fi
 }
 

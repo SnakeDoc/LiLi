@@ -28,10 +28,9 @@ error() {
 
 execute_script() {
     echo "Executing as user $3: $2"
-    RETURN=$(execute_as_user $3 ${SYSTEM_SCRIPTS}/$2)
-    if [ ${RETURN} -ne ${OK} ]
+    if ! execute_as_user $3 ${SYSTEM_SCRIPTS}/$2
     then
-        error $1 $2 ${RETURN}
+        error $1 $2 $?
     fi
 }
 
