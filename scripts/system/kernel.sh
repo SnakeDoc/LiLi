@@ -75,7 +75,7 @@ then
 fi
 
 make ARCH=${CLFS_ARCH} CROSS_COMPILE=${CLFS_ENV_PATH}/${CLFS_TARGET}- \
-    INSTALL_MOD_PATH=${CLFS_TARGETFS} modules_install
+    INSTALL_MOD_PATH=${FAKEROOT} modules_install
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -127,7 +127,7 @@ fi
 
 # move kernel image to targetfs boot directory
 echo "Installing kernel.img"
-mv -v kernel.img ${CLFS_TARGETFS}/boot/
+mv -v kernel.img ${FAKEROOT}/boot/
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

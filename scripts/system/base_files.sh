@@ -22,12 +22,12 @@ echo "Installing base system files"
 
 ########## mtab ##########
 echo "Installing /etc/mtab"
-ln -svf ../proc/mounts ${CLFS}/targetfs/etc/mtab
+ln -svf ../proc/mounts ${FAKEROOT}/etc/mtab
 fail_on_error $?
 
 ########## passwd ##########
 echo "Installing /etc/passwd"
-cat > ${CLFS}/targetfs/etc/passwd << "EOF"
+cat > ${FAKEROOT}/etc/passwd << "EOF"
 root::0:0:root:/root:/bin/ash
 bin:x:1:1:bin:/bin:/bin/false
 daemon:x:2:6:daemon:/sbin:/bin/false
@@ -44,7 +44,7 @@ fail_on_error $?
 
 ########## group ##########
 echo "Installing /etc/group"
-cat > ${CLFS}/targetfs/etc/group << "EOF"
+cat > ${FAKEROOT}/etc/group << "EOF"
 root:x:0:
 bin:x:1:
 sys:x:2:
@@ -75,14 +75,14 @@ fail_on_error $?
 
 ########## logs ##########
 echo "Installing logs"
-touch ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/{btmp,lastlog,wtmp}
+touch ${FAKEROOT}/var/run/utmp ${FAKEROOT}/var/log/{btmp,lastlog,wtmp}
 fail_on_error $?
-chmod -v 664 ${CLFS}/targetfs/var/run/utmp ${CLFS}/targetfs/var/log/lastlog
+chmod -v 664 ${FAKEROOT}/var/run/utmp ${FAKEROOT}/var/log/lastlog
 fail_on_error $?
 
 ########## fstab ##########
 echo "Installing /etc/fstab"
-cat > ${CLFS}/targetfs/etc/fstab << "EOF"
+cat > ${FAKEROOT}/etc/fstab << "EOF"
 # Begin /etc/fstab
 
 # file system  mount-point  type   options          dump  fsck
@@ -101,10 +101,10 @@ fail_on_error $?
 
 ########## issue file ##########
 echo "Installing /etc/issue"
-clear > ${CLFS_TARGETFS}/etc/issue
+clear > ${FAKEROOT}/etc/issue
 # note: don't use quotes on EOF to allow
 #    variables to be parsed
-cat >> ${CLFS}/targetfs/etc/issue << EOF
+cat >> ${FAKEROOT}/etc/issue << EOF
 ${OS_NAME} release ${VERSION}
 
 Kernel \r on an \m
@@ -114,7 +114,7 @@ fail_on_error $?
 
 ########## mdev ##########
 echo "Installing /etc/mdev.conf"
-cat > ${CLFS}/targetfs/etc/mdev.conf << "EOF"
+cat > ${FAKEROOT}/etc/mdev.conf << "EOF"
 # /etc/mdev/conf
 
 # Devices:
@@ -225,7 +225,7 @@ fail_on_error $?
 
 ########## profile ##########
 echo "Installing /etc/profile"
-cat > ${CLFS}/targetfs/etc/profile<< "EOF"
+cat > ${FAKEROOT}/etc/profile<< "EOF"
 # /etc/profile
 
 # Set the initial path
@@ -251,7 +251,7 @@ fail_on_error $?
 
 ########## inittab ##########
 echo "Installing /etc/inittab"
-cat > ${CLFS}/targetfs/etc/inittab << "EOF"
+cat > ${FAKEROOT}/etc/inittab << "EOF"
 # /etc/inittab
 
 ::sysinit:/etc/rc.d/startup
@@ -274,7 +274,7 @@ fail_on_error $?
 
 ########## shells ##########
 echo "Installing /etc/shells"
-cat > ${CLFS}/targetfs/etc/shells << "EOF"
+cat > ${FAKEROOT}/etc/shells << "EOF"
 /bin/sh
 /bin/ash
 EOF
@@ -284,21 +284,21 @@ fail_on_error $?
 echo "Installing /etc/${OS_NAME,,}-release"
 # note: don't use quotes around EOF to
 #    allow variables to be parsed
-cat > ${CLFS}/targetfs/etc/${OS_NAME,,}-release << EOF
+cat > ${FAKEROOT}/etc/${OS_NAME,,}-release << EOF
 ${OS_NAME} release ${VERSION}
 EOF
 fail_on_error $?
 
 ########## hostname ##########
 echo "Installing /etc/HOSTNAME"
-echo "${OS_NAME,,}" > ${CLFS}/targetfs/etc/HOSTNAME
+echo "${OS_NAME,,}" > ${FAKEROOT}/etc/HOSTNAME
 fail_on_error $?
 
 ########## hosts ##########
 echo "Installing /etc/hosts"
 # note: don't use quotes around EOF to allow
 #    variables to be parsed
-cat > ${CLFS}/targetfs/etc/hosts << EOF
+cat > ${FAKEROOT}/etc/hosts << EOF
 # Begin /etc/hosts
 
 127.0.0.1 ${OS_NAME,,}.local ${OS_NAME,,} localhost

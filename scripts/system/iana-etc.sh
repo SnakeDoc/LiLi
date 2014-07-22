@@ -58,7 +58,7 @@ then
     exit ${RESPONSE}
 fi
 
-make DESTDIR=${CLFS_TARGETFS} install
+make DESTDIR=${FAKEROOT} install
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

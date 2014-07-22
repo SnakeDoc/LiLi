@@ -25,6 +25,9 @@ CLFS_TOOLS=${CLFS}/cross-tools
 CLFS_ENV_PATH=${CLFS_TOOLS}/bin
 CLFS_BUILD=${CLFS}/build
 
+FAKEROOT=${CLFS}/fakeroot
+FAKEROOT_PKGDIR=${CLFS}/packages
+
 KERNEL_VERSION="3.12"
 
 CLFS_FLOAT="hard"

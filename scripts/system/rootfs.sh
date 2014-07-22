@@ -20,27 +20,27 @@ fail_on_error() {
 
 echo "Creating root file system (rootfs)"
 
-mkdir -pv ${CLFS}/targetfs/{bin,boot,dev,etc,home,lib/{firmware,modules}}
+mkdir -pv ${FAKEROOT}/{bin,boot,dev,etc,home,lib/{firmware,modules}}
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 
-mkdir -pv ${CLFS}/targetfs/{mnt,opt,proc,sbin,srv,sys}
+mkdir -pv ${FAKEROOT}/{mnt,opt,proc,sbin,srv,sys}
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 
-mkdir -pv ${CLFS}/targetfs/var/{cache,lib,local,lock,log,opt,run,spool}
+mkdir -pv ${FAKEROOT}/var/{cache,lib,local,lock,log,opt,run,spool}
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 
-install -dv -m 0750 ${CLFS}/targetfs/root
+install -dv -m 0750 ${FAKEROOT}/root
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 
-install -dv -m 1777 ${CLFS}/targetfs/tmp
+install -dv -m 1777 ${FAKEROOT}/tmp
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 
-mkdir -pv ${CLFS}/targetfs/usr/{,local/}{bin,include,lib,sbin,share,src}
+mkdir -pv ${FAKEROOT}/usr/{,local/}{bin,include,lib,sbin,share,src}
 RESPONSE=$?
 fail_on_error ${RESPONSE}
 

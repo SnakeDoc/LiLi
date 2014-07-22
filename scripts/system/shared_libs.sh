@@ -20,7 +20,7 @@ fail_on_error() {
 
 echo "Installing shared libraries"
 
-cp -vP ${CLFS_TOOLS}/${CLFS_TARGET}/lib/*.so* ${CLFS_TARGETFS}/lib/
+cp -vP ${CLFS_TOOLS}/${CLFS_TARGET}/lib/*.so* ${FAKEROOT}/lib/
 fail_on_error $?
 
 exit 0 # normal exit

@@ -37,17 +37,17 @@ git reset --hard origin/master
 
 # cleanup old firmware
 echo "Cleanup old firmware"
-rm -v ${CLFS_TARGETFS}/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf}
+rm -v ${FAKEROOT}/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf}
 
 cd ${CLFS_SOURCES}/${PKG_NAME}/
 
 # copy firmware to boot directory
 echo "Installing firmware"
-cp -v ${CLFS_SOURCES}/firmware/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf} ${CLFS_TARGETFS}/boot/
+cp -v ${CLFS_SOURCES}/firmware/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf} ${FAKEROOT}/boot/
 
-clear > ${CLFS_TARGETFS}/boot/cmdline.txt
+clear > ${FAKEROOT}/boot/cmdline.txt
 echo "Installing boot variables"
-cat > ${CLFS_TARGETFS}/boot/cmdline.txt << "EOF"
+cat > ${FAKEROOT}/boot/cmdline.txt << "EOF"
 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootdelay=2
 EOF
 
@@ -58,10 +58,10 @@ then
    
     # cleanup
     echo "Remove old boot/config.txt"
-    rm -fv ${CLFS_TARGETFS}/boot/config.txt
+    rm -fv ${FAKEROOT}/boot/config.txt
  
 echo "Install new boot/config.txt"
-cat > ${CLFS_TARGETFS}/boot/config.txt << EOF
+cat > ${FAKEROOT}/boot/config.txt << EOF
 arm_freq=${ARM_FREQ}
 arm_freq_min=${ARM_FREQ_MIN}
 core_freq=${CORE_FREQ}
@@ -74,7 +74,7 @@ elif [ "${OVERCLOCK}" -eq "0" ]
 then
     echo "Overclocking disabled"
     echo "Removing boot/config.txt"
-    rm -fv ${CLFS_TARGETFS}/boot/config.txt
+    rm -fv ${FAKEROOT}/boot/config.txt
 fi
 
 exit 0

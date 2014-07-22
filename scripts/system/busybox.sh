@@ -63,7 +63,7 @@ fi
 
 # Install busybox to rootfs
 ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_ENV_PATH}/${CLFS_TARGET}-" make  \
-  CONFIG_PREFIX="${CLFS_TARGETFS}" install
+  CONFIG_PREFIX="${FAKEROOT}" install
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

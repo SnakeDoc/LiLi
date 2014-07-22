@@ -4,6 +4,7 @@
 
 . settings/functions
 . settings/config
+. scripts/utils/fakeroot.sh
 
 build_system() {
     while IFS=',' read -ra ADDR; do
@@ -54,7 +55,9 @@ build_package() {
             )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
+                setup_fakeroot
                 execute_script $1 ${SCRIPT_NAME} $(logname)
+                package_fakeroot $(echo ${SCRIPT_NAME} | cut -d "." -f 1)
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status ${OK}

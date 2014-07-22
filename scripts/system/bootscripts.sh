@@ -33,7 +33,7 @@ tar -zxvf ${PKG_NAME}.tar.gz
 
 cd ${CLFS_SOURCES}/${PKG_NAME}/
 
-make DESTDIR=${CLFS_TARGETFS} install-bootscripts
+make DESTDIR=${FAKEROOT} install-bootscripts
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -41,7 +41,7 @@ then
     exit ${RESPONSE}
 fi
 
-install -dv ${CLFS_TARGETFS}/etc/init.d
+install -dv ${FAKEROOT}/etc/init.d
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -49,7 +49,7 @@ then
     exit ${RESPONSE}
 fi
 
-ln -svf ../rc.d/startup ${CLFS_TARGETFS}/etc/init.d/rcS
+ln -svf ../rc.d/startup ${FAKEROOT}/etc/init.d/rcS
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

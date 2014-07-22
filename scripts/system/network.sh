@@ -20,7 +20,7 @@ fail_on_error() {
 
 echo "Installing network"
 
-cat > ${CLFS_TARGETFS}/etc/rc.d/init.d/network << "EOF"
+cat > ${FAKEROOT}/etc/rc.d/init.d/network << "EOF"
 #!/bin/ash
 #
 # Networking
@@ -70,26 +70,26 @@ esac
 EOF
 fail_on_error $?
 
-chmod +x ${CLFS_TARGETFS}/etc/rc.d/init.d/network
+chmod +x ${FAKEROOT}/etc/rc.d/init.d/network
 fail_on_error $?
 
-ln -svf ../init.d/network ${CLFS_TARGETFS}/etc/rc.d/start/S01network
+ln -svf ../init.d/network ${FAKEROOT}/etc/rc.d/start/S01network
 fail_on_error $?
-ln -svf ../init.d/network ${CLFS_TARGETFS}/etc/rc.d/stop/K999network
-fail_on_error $?
-
-mkdir -pv ${CLFS_TARGETFS}/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d
-fail_on_error $?
-mkdir -pv ${CLFS_TARGETFS}/usr/share/udhcpc
+ln -svf ../init.d/network ${FAKEROOT}/etc/rc.d/stop/K999network
 fail_on_error $?
 
-cat > ${CLFS_TARGETFS}/etc/network/interfaces << "EOF"
+mkdir -pv ${FAKEROOT}/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d
+fail_on_error $?
+mkdir -pv ${FAKEROOT}/usr/share/udhcpc
+fail_on_error $?
+
+cat > ${FAKEROOT}/etc/network/interfaces << "EOF"
 auto eth0
 iface eth0 inet dhcp
 EOF
 fail_on_error $?
 
-cat > ${CLFS_TARGETFS}/usr/share/udhcpc/default.script << "EOF"
+cat > ${FAKEROOT}/usr/share/udhcpc/default.script << "EOF"
 #!/bin/sh
 # udhcpc Interface Configuration
 # Based on http://lists.debian.org/debian-boot/2002/11/msg00500.html
@@ -131,7 +131,7 @@ exit 0
 EOF
 fail_on_error $?
 
-chmod +x ${CLFS_TARGETFS}/usr/share/udhcpc/default.script
+chmod +x ${FAKEROOT}/usr/share/udhcpc/default.script
 fail_on_error $?
 
 exit 0 # OK

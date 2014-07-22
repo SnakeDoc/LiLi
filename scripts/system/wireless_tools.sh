@@ -57,7 +57,7 @@ then
     exit ${RESPONSE}
 fi
 
-make PREFIX=${CLFS_TARGETFS}/usr
+make PREFIX=${FAKEROOT}/usr
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -65,7 +65,7 @@ then
     exit ${RESPONSE}
 fi
 
-make install PREFIX=${CLFS_TARGETFS}/usr
+make install PREFIX=${FAKEROOT}/usr
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

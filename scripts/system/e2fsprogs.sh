@@ -67,7 +67,7 @@ then
     exit ${RESPONSE}
 fi
 
-make DESTDIR=${CLFS_TARGETFS} install
+make DESTDIR=${FAKEROOT} install
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -75,7 +75,7 @@ then
     exit ${RESPONSE}
 fi
 
-make DESTDIR=${CLFS_TARGETFS} install-libs
+make DESTDIR=${FAKEROOT} install-libs
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

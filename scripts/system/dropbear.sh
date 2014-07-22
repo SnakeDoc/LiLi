@@ -53,7 +53,7 @@ fi
 
 make MULTI=1 \
   PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" \
-  install DESTDIR=${CLFS_TARGETFS}
+  install DESTDIR=${FAKEROOT}
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -61,7 +61,7 @@ then
     exit ${RESPONSE}
 fi
 
-install -dv ${CLFS_TARGETFS}/etc/dropbear
+install -dv ${FAKEROOT}/etc/dropbear
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
@@ -94,7 +94,7 @@ tar -zxvf ${PKG_NAME}.tar.gz
 
 cd ${CLFS_SOURCES}/${PKG_NAME}/
 
-make install-dropbear DESTDIR=${CLFS_TARGETFS}
+make install-dropbear DESTDIR=${FAKEROOT}
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then
