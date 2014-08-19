@@ -29,7 +29,8 @@ error() {
 
 execute_script() {
     echo "Executing as user $3: $2"
-    if ! execute_as_user $3 ${SYSTEM_SCRIPTS}/$2
+    #if ! execute_as_user $3 ${SYSTEM_SCRIPTS}/$2
+    if ! ${SYSTEM_SCRIPTS}/$2
     then
         error $1 $2 $?
     fi
@@ -42,16 +43,16 @@ build_package() {
             declare -a scripts=(\
                 "rootfs.sh" \
                 "base_files.sh" \
-                "busybox.sh" \
-                "iana-etc.sh" \
-                "kernel.sh" \
-                "firmware.sh" \
-                "bootscripts.sh" \
-                "network.sh" \
-                "dropbear.sh" \
-                "wireless_tools.sh" \
-                "e2fsprogs.sh" \
-                "shared_libs.sh"
+                #"busybox.sh" \
+                #"iana-etc.sh" \
+                #"kernel.sh" \
+                #"firmware.sh" \
+                #"bootscripts.sh" \
+                #"network.sh" \
+                #"dropbear.sh" \
+                #"wireless_tools.sh" \
+                #"e2fsprogs.sh" \
+                #"shared_libs.sh"
             )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
@@ -63,7 +64,7 @@ build_package() {
                 show_status ${OK}
                 echo ""
             done
-
+exit 1
             # finalize base system
             echo ""
             echo "Finalizing base system"

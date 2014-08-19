@@ -2,19 +2,19 @@
 
 # Install Base System Files
 
-. settings/functions
-. settings/config
-. settings/toolchain
+#. settings/functions
+#. settings/config
+#. settings/toolchain
 
 pkg_error() {
-    error "Error on package base_files" "base_files.sh" $1
+    error "Error on package base_files" "base_files.sh" "$1"
 }
 
 fail_on_error() {
-    if [ $1 -ne 0 ]
+    if [ "$1" -ne 0 ]
     then
-        pkg_error $1
-        exit $1
+        pkg_error "$1"
+        exit "$1"
     fi
 }
 
@@ -22,12 +22,12 @@ echo "Installing base system files"
 
 ########## mtab ##########
 echo "Installing /etc/mtab"
-ln -svf ../proc/mounts ${FAKEROOT}/etc/mtab
+ln -svf ../proc/mounts "${FAKEROOT}/etc/mtab"
 fail_on_error $?
 
 ########## passwd ##########
 echo "Installing /etc/passwd"
-cat > ${FAKEROOT}/etc/passwd << "EOF"
+cat > "${FAKEROOT}/etc/passwd" << "EOF"
 root::0:0:root:/root:/bin/ash
 bin:x:1:1:bin:/bin:/bin/false
 daemon:x:2:6:daemon:/sbin:/bin/false

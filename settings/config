@@ -1,52 +1,53 @@
 # Configurations
 
-OS_NAME="LiLi"
-VERSION="0.1 (Alpha)"
+export OS_NAME="LiLi"
+export VERSION="0.1 (Alpha)"
 
 unset CFLAGS
 unset CXXFLAGS
 
-BUILD_ROOT=$(pwd)
+export BUILD_ROOT=$(pwd)
 
-SCRIPTS=$(pwd)/scripts
-PACKAGES=$(pwd)/packages
-SOURCES=$(pwd)/sources
+export SCRIPTS=$(pwd)/scripts
+export PACKAGES=$(pwd)/packages
+export SOURCES=$(pwd)/sources
 
-COMPILER_SCRIPTS=${SCRIPTS}/compiler
-TOOLCHAIN_DEPS=${PACKAGES}/toolchain
-SYSTEM_DEPS=${PACKAGES}/system
+export COMPILER_SCRIPTS=${SCRIPTS}/compiler
+export TOOLCHAIN_DEPS=${PACKAGES}/toolchain
+export SYSTEM_DEPS=${PACKAGES}/system
 
-SYSTEM_SCRIPTS=${SCRIPTS}/system
+export SYSTEM_SCRIPTS=${SCRIPTS}/system
 
-CLFS=${BUILD_ROOT}/target
-CLFS_TARGETFS=${CLFS}/targetfs
-CLFS_SOURCES=${CLFS}/sources
-CLFS_TOOLS=${CLFS}/cross-tools
-CLFS_ENV_PATH=${CLFS_TOOLS}/bin
-CLFS_BUILD=${CLFS}/build
+export CLFS=${BUILD_ROOT}/target
+export CLFS_TARGETFS=${CLFS}/targetfs
+export CLFS_SOURCES=${CLFS}/sources
+export CLFS_TOOLS=${CLFS}/cross-tools
+export CLFS_ENV_PATH=${CLFS_TOOLS}/bin
+export CLFS_BUILD=${CLFS}/build
 
-FAKEROOT=${CLFS}/fakeroot
-FAKEROOT_PKGDIR=${CLFS}/packages
+export FAKEROOT=${CLFS}/fakeroot
+export FAKEROOT_PKGDIR=${CLFS}/packages
 
-KERNEL_VERSION="3.12"
+export KERNEL_VERSION="3.12"
 
-CLFS_FLOAT="hard"
-CLFS_FPU="vfp"
-CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
-CLFS_TARGET="arm-linux-musleabihf"
-CLFS_ARCH="arm"
-CLFS_ARM_ARCH="armv6zk"
-CLFS_ENDIAN="little"
-CLFS_ABI="aapcs-linux"
+export CLFS_FLOAT="hard"
+export CLFS_FPU="vfp"
+export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export CLFS_TARGET="arm-linux-musleabihf"
+export CLFS_ARCH="arm"
+export CLFS_ARM_ARCH="armv6zk"
+export CLFS_ENDIAN="little"
+export CLFS_ABI="aapcs-linux"
 
 # Overclocking
 
 # 0 = disable | 1 = enable
-OVERCLOCK=1
+export OVERCLOCK=1
 
-ARM_FREQ=800
-ARM_FREQ_MIN=100
-CORE_FREQ=300
-CORE_FREQ_MIN=75
-SDRAM_FREQ=400
-OVER_VOLTAGE=0
+export ARM_FREQ=800
+export ARM_FREQ_MIN=100
+export CORE_FREQ=300
+export CORE_FREQ_MIN=75
+export SDRAM_FREQ=400
+export OVER_VOLTAGE=0
+

@@ -21,5 +21,8 @@ clean-compiler:
 clean-system:
 	/bin/bash -c "time ./scripts/utils/clean_system.sh"
 
+clean-packages:
+	/bin/bash -c "time ./scripts/utils/clean_packages.sh"
+
 clean-all:
 	/bin/bash -c "time ./scripts/utils/clean_all.sh"

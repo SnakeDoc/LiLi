@@ -2,9 +2,9 @@
 
 # create the rootfs
 
-. settings/functions
-. settings/config
-. settings/toolchain
+#. settings/functions
+#. settings/config
+#. settings/toolchain
 
 pkg_error() {
     error "Error on package rootfs" "rootfs.sh" $1
@@ -19,7 +19,6 @@ fail_on_error() {
 }
 
 echo "Creating root file system (rootfs)"
-
 mkdir -pv ${FAKEROOT}/{bin,boot,dev,etc,home,lib/{firmware,modules}}
 RESPONSE=$?
 fail_on_error ${RESPONSE}
