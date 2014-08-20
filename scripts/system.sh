@@ -43,16 +43,16 @@ build_package() {
             declare -a scripts=(\
                 "rootfs.sh" \
                 "base_files.sh" \
-                #"busybox.sh" \
-                #"iana-etc.sh" \
-                #"kernel.sh" \
-                #"firmware.sh" \
-                #"bootscripts.sh" \
-                #"network.sh" \
-                #"dropbear.sh" \
-                #"wireless_tools.sh" \
-                #"e2fsprogs.sh" \
-                #"shared_libs.sh"
+                "busybox.sh" \
+                "iana-etc.sh" \
+                "kernel.sh" \
+                "firmware.sh" \
+                "bootscripts.sh" \
+                "network.sh" \
+                "dropbear.sh" \
+                "wireless_tools.sh" \
+                "e2fsprogs.sh" \
+                "shared_libs.sh"
             )
 
             for SCRIPT_NAME in "${scripts[@]}"; do

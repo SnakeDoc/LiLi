@@ -2,9 +2,8 @@
 
 # iana-etc
 
-. settings/functions
-. settings/config
-. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_dir=$(locate_package "iana-etc")
 

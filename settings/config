@@ -8,9 +8,10 @@ unset CXXFLAGS
 
 export BUILD_ROOT=$(pwd)
 
-export SCRIPTS=$(pwd)/scripts
-export PACKAGES=$(pwd)/packages
-export SOURCES=$(pwd)/sources
+export SCRIPTS=${BUILD_ROOT}/scripts
+export PACKAGES=${BUILD_ROOT}/packages
+export SOURCES=${BUILD_ROOT}/sources
+export SETTINGS=${BUILD_ROOT}/settings
 
 export COMPILER_SCRIPTS=${SCRIPTS}/compiler
 export TOOLCHAIN_DEPS=${PACKAGES}/toolchain

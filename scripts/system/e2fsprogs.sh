@@ -2,9 +2,8 @@
 
 # Install e2fsprogs
 
-. settings/functions
-. settings/config
-. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_dir=$(locate_package "e2fsprogs")
 

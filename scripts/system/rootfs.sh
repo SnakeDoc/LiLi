@@ -2,9 +2,8 @@
 
 # create the rootfs
 
-#. settings/functions
-#. settings/config
-#. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package rootfs" "rootfs.sh" $1

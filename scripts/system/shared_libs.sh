@@ -2,9 +2,8 @@
 
 # Install shared libs
 
-. settings/functions
-. settings/config
-. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package base_files" "shared_libs.sh" $1

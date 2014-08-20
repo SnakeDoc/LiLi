@@ -2,9 +2,8 @@
 
 # Install Base System Files
 
-#. settings/functions
-#. settings/config
-#. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package base_files" "base_files.sh" "$1"

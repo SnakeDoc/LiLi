@@ -2,9 +2,8 @@
 
 # Finalize root filesystem
 
-. settings/functions
-. settings/config
-. settings/toolchain
+. ${SETTINGS}/toolchain
+. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package finalize" "finalize.sh" $1
