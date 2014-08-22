@@ -27,7 +27,7 @@ function error() {
 
 execute_script() {
     echo "Executing as user: $2"
-    if ! execute_as_user $3 ${COMPILER_SCRIPTS}/$2
+    if ! ${COMPILER_SCRIPTS}/$2
     then
         error $1 $2 $?
     fi
@@ -66,12 +66,12 @@ build_package() {
 }
 
 # create base directory
-execute_as_user $(logname) "mkdir -pv ${CLFS}"
+mkdir -pv ${CLFS}
 # Make source dir
-execute_as_user $(logname) "mkdir -pv ${CLFS_SOURCES}"
+mkdir -pv ${CLFS_SOURCES}
 # create sysroot directory
-execute_as_user $(logname) "mkdir -pv ${CLFS_TOOLS}/${CLFS_TARGET}"
-execute_as_user $(logname) "ln -sfv . ${CLFS_TOOLS}/${CLFS_TARGET}/usr"
+mkdir -pv ${CLFS_TOOLS}/${CLFS_TARGET}
+ln -sfv . ${CLFS_TOOLS}/${CLFS_TARGET}/usr
 
 # toolchain
 . ${TOOLCHAIN_DEPS}/package.mk
@@ -81,7 +81,7 @@ build_toolchain ${PKG_DEPENDS}
 # test toolchain
 echo ""
 echo "Testing toolchain..."
-execute_as_user $(logname) "${COMPILER_SCRIPTS}/test_compiler.sh"
+${COMPILER_SCRIPTS}/test_compiler.sh
 
 # finish script
 echo ""

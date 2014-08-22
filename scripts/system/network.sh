@@ -18,6 +18,8 @@ fail_on_error() {
 }
 
 echo "Installing network"
+# make it so, number 1!
+mkdir -pv ${FAKEROOT}/etc/rc.d/{start,stop,init.d}
 
 cat > ${FAKEROOT}/etc/rc.d/init.d/network << "EOF"
 #!/bin/ash
