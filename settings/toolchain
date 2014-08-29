@@ -1,6 +1,6 @@
 # Toolchain Environment Variables
 
-. settings/config
+. ${SETTINGS}/config
 
 # unset existing env vars
 unset CC

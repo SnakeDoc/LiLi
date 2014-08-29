@@ -79,6 +79,13 @@ fail_on_error $?
 chmod -v 664 ${FAKEROOT}/var/run/utmp ${FAKEROOT}/var/log/lastlog
 fail_on_error $?
 
+# permissions
+echo "Setting group on utmp and lastlog log files"
+chgrp -v 13 ${FAKEROOT}/var/run/utmp
+fail_on_error $?
+chgrp -v 13 ${FAKEROOT}/var/log/lastlog
+fail_on_error $?
+
 ########## fstab ##########
 echo "Installing /etc/fstab"
 cat > ${FAKEROOT}/etc/fstab << "EOF"
