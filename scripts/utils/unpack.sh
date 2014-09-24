@@ -21,7 +21,7 @@ check_status
 # now unpack everything from ${BUILD_ROOT}/packages directory
 PACKAGES=$(find "${FAKEROOT_PKGDIR}/" -type f -name "*.tar.gz")
 
-for package in "${PACKAGES[@]}"; do
+for package in ${PACKAGES[@]}; do
 
    echo "Extracting package: ${package}"
    tar -zxvf "${package}" -C "${FAKEROOT}/"
@@ -29,11 +29,17 @@ for package in "${PACKAGES[@]}"; do
 
 done
 
+# we shold sync now to ensure all buffers are flushed to disk
+echo ""
+echo -n "Syncing disk"
+sync
+check_status
+
 echo ""
 echo "Packages Unpacked:"
 echo ""
 
-for package in "${PACKAGES[@]}"; do
+for package in ${PACKAGES[@]}; do
    echo -n "${package}"
    show_status "${OK}"
 done

@@ -12,6 +12,9 @@ compiler: clean-compiler
 system: clean-system
 	/bin/bash -c "time ./scripts/system.sh 2>&1 | tee ${LOG}"
 
+unpack:
+	/bin/bash -c "time ./scripts/utils/unpack.sh"
+
 clean-sources:
 	/bin/bash -c "time ./scripts/utils/clean_sources.sh"
 
