@@ -8,6 +8,7 @@ A minimalist and performant GNU/Linux operating system.
  - Target FPU: Hard Float (vfp)
  - Target Endianness: Little
 
+===================
 
         Base Packages:
                 gcc-4.8.2
