@@ -2,8 +2,8 @@
 
 # Raspberry Pi Firmware
 
-. ${SETTINGS}/toolchain
-. ${SETTINGS}/functions
+#. ${SETTINGS}/toolchain
+#. ${SETTINGS}/functions
 
 pkg_dir=$(locate_package "firmware")
 

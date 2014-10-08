@@ -2,8 +2,8 @@
 
 # Bootscripts
 
-. ${SETTINGS}/toolchain
-. ${SETTINGS}/functions
+#. ${SETTINGS}/toolchain
+#. ${SETTINGS}/functions
 
 pkg_dir=$(locate_package "bootscripts")
 

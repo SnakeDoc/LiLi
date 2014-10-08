@@ -2,8 +2,8 @@
 
 # Archive the root filesystem
 
-. ${SETTINGS}/toolchain
-. ${SETTINGS}/functions
+#. ${SETTINGS}/toolchain
+#. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package archive" "archive.sh" $1
@@ -16,6 +16,9 @@ fail_on_error() {
         exit $1
     fi
 }
+
+# make sure all data is synced to disk
+sync
 
 mkdir -pv ${CLFS}/archives
 

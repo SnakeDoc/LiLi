@@ -2,8 +2,8 @@
 
 # Network
 
-. ${SETTINGS}/toolchain
-. ${SETTINGS}/functions
+#. ${SETTINGS}/toolchain
+#. ${SETTINGS}/functions
 
 pkg_error() {
     error "Error on package network" "network.sh" $1

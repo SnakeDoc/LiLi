@@ -1,5 +1,8 @@
 # Common functions
 
+export OK="0"
+export FAIL="1"
+
 execute_as_user() {
 
     su "$1" -s /bin/bash -c "$2;exit \$?"
@@ -20,9 +23,6 @@ check_status() {
 	echo -en "\e[0;0m"
         echo -e "]"
 }
-
-OK=0
-FAIL=1
 
 show_status() {
         echo -en "\e[65G"
@@ -207,4 +207,15 @@ function build_depends {
         done
     done <<< $1
 }
+
+#####
+# Export functions
+#####
+
+export -f check_status
+export -f show_status
+export -f error
+export -f locate_package
+export -f build_package
+export -f build_depends
 

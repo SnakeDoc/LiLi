@@ -29,6 +29,10 @@ export CLFS_BUILD=${CLFS}/build
 export FAKEROOT=${CLFS}/fakeroot
 export FAKEROOT_PKGDIR=${CLFS}/packages
 
+export IMAGE_DIR=${CLFS}/mk_image
+export IMAGE_SIZE_BS="1MB"
+export IMAGE_SIZE_COUNT="2048"
+
 export KERNEL_VERSION="3.12"
 
 export CLFS_FLOAT="hard"

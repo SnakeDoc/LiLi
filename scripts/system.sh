@@ -4,6 +4,7 @@
 
 . settings/functions
 . settings/config
+. settings/toolchain
 . scripts/utils/fakeroot.sh
 
 build_system() {

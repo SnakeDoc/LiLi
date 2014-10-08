@@ -2,8 +2,8 @@
 
 # Install Dropbear SSH Client/Server
 
-. ${SETTINGS}/toolchain
-. ${SETTINGS}/functions
+#. ${SETTINGS}/toolchain
+#. ${SETTINGS}/functions
 
 pkg_dir=$(locate_package "dropbear")
 
@@ -12,7 +12,7 @@ pkg_dir=$(locate_package "dropbear")
 pkg_error() {
     error "Error on package ${PKG_NAME}" "dropbear.sh" $1
 }
-
+echo "CC: ${CC}"
 cd ${CLFS_SOURCES}/
 if [ ! -e "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}.tar.bz2" ]
 then
