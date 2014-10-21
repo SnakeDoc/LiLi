@@ -4,7 +4,7 @@ LOG="runtime.log"
 
 ROTATE_LOG:=$(shell bash ./scripts/utils/rotate_log.sh)
 
-all: clean-all compiler system
+all: clean-all compiler system unpack
 
 compiler: clean-compiler
 	/bin/bash -c "time ./scripts/compiler.sh 2>&1 | tee ${LOG}"
