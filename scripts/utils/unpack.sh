@@ -6,17 +6,20 @@
 . settings/functions
 . settings/config
 
-if [ -e "${FAKEROOT}" ]; then
-    echo "Fakeroot exists! Cleaning..."
-    cd "${BUILD_ROOT}/"
-    rm -rf "${FAKEROOT}/"
+if [ -n "${1}" ]; then
+    FAKEROOT="${1}"
+else
+    if [ -e "${FAKEROOT}" ]; then
+        echo "Fakeroot exists! Cleaning..."
+        cd "${BUILD_ROOT}/"
+        rm -rf "${FAKEROOT}/"
+    fi
 
+    echo "Creating Fakeroot Directory..."
+
+    mkdir -pv "${FAKEROOT}"
+    check_status
 fi
-
-echo "Creating Fakeroot Directory..."
-
-mkdir -pv "${FAKEROOT}"
-check_status
 
 # now unpack everything from ${BUILD_ROOT}/packages directory
 PACKAGES=$(find "${FAKEROOT_PKGDIR}/" -type f -name "*.tar.gz")
