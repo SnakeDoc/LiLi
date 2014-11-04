@@ -15,6 +15,9 @@ system: clean-system
 unpack:
 	/bin/bash -c "time ./scripts/utils/unpack.sh"
 
+image: clean-packages clean-system system
+	/bin/bash -c "time ./scripts/utils/mkimage.sh"
+
 clean-sources:
 	/bin/bash -c "time ./scripts/utils/clean_sources.sh"
 

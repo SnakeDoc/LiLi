@@ -42,19 +42,25 @@ check_status
 
 # now format the partitions
 echo -n "Creating loopback devices..."
-MAPPING=$(kpartx -l "${IMAGE_DIR}/${IMAGE_NAME}" | cut -d " " -f 1)
+MAPPING=($(kpartx -l "${IMAGE_DIR}/${IMAGE_NAME}" | cut -d " " -f 1))
 kpartx -a "${IMAGE_DIR}/${IMAGE_NAME}"
 check_status
 
-echo -n "Formatting partition 1 as vfat..."
+sleep 2
+
+echo "Formatting partition 1 as vfat..."
 mkfs.vfat "/dev/mapper/${MAPPING[0]}"
 check_status
 sync
 
-echo -n "Formatting partition 2 as ext4..."
+sleep 2
+
+echo "Formatting partition 2 as ext4..."
 mkfs.ext4 "/dev/mapper/${MAPPING[1]}"
 check_status
 sync
+
+sleep 2
 
 echo "Creating base directory structure..."
 mkdir -pv "${IMAGE_DIR}/rootfs"
