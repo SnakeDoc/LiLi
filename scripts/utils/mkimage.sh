@@ -2,8 +2,8 @@
 
 # Make Image of Filesystem
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 if [ -e "${IMAGE_DIR}" ]; then
 

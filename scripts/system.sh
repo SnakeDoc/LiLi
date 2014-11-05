@@ -2,9 +2,9 @@
 
 # Build the LiLi System
 
-. settings/functions
 . settings/config
 . settings/toolchain
+. scripts/utils/utils.sh
 . scripts/utils/fakeroot.sh
 
 build_system() {

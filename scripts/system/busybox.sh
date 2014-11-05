@@ -2,9 +2,6 @@
 
 # Busybox
 
-#. ${SETTINGS}/toolchain
-#. ${SETTINGS}/functions
-
 pkg_dir=$(locate_package "busybox")
 
 . ${pkg_dir}/package.mk

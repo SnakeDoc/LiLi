@@ -2,9 +2,6 @@
 
 # Linux Kernel
 
-#. ${SETTINGS}/toolchain
-#. ${SETTINGS}/functions
-
 pkg_dir=$(locate_package "linux")
 
 . ${pkg_dir}/package.mk

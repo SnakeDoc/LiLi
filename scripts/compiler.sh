@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 build_toolchain() {
     while IFS=',' read -ra ADDR; do

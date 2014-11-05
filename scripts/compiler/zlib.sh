@@ -2,9 +2,9 @@
 
 # Install Zlib
 
-. settings/functions
 . settings/config
 . settings/toolchain
+. scripts/utils/utils.sh
 
 pkg_dir=$(locate_package "zlib")
 

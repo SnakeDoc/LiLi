@@ -2,8 +2,8 @@
 
 # Fakeroot utils
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 setup_fakeroot() {
 

@@ -2,8 +2,8 @@
 
 # musl-libc
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 pkg_dir=$(locate_package "musl-libc")
 

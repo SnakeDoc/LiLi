@@ -2,9 +2,6 @@
 
 # Install Dropbear SSH Client/Server
 
-#. ${SETTINGS}/toolchain
-#. ${SETTINGS}/functions
-
 pkg_dir=$(locate_package "dropbear")
 
 . ${pkg_dir}/package.mk

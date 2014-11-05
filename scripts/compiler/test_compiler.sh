@@ -2,8 +2,8 @@
 
 # Script that tests the cross-compiler to ensure it is working
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 pkg_error() {
     error "Error testing cross-compiler!" "test_compiler.sh" $1

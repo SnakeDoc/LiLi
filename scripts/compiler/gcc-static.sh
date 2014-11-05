@@ -2,8 +2,8 @@
 
 # gcc (static)
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 pkg_dir=$(locate_package "gcc")
 

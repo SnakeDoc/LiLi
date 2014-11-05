@@ -2,9 +2,6 @@
 
 # Archive the root filesystem
 
-#. ${SETTINGS}/toolchain
-#. ${SETTINGS}/functions
-
 pkg_error() {
     error "Error on package archive" "archive.sh" $1
 }

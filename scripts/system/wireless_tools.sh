@@ -2,9 +2,6 @@
 
 # Install wireless tools
 
-#. ${SETTINGS}/toolchain
-#. ${SETTINGS}/functions
-
 pkg_dir=$(locate_package "wireless_tools")
 
 . ${pkg_dir}/package.mk

@@ -3,8 +3,8 @@
 # Unpack Tools
 #  - Used to unpack packages and install base file system
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 if [ -n "${1}" ]; then
     FAKEROOT="${1}"
