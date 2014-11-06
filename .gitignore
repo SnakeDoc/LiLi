@@ -37,6 +37,7 @@ nosetests.xml
 
 # lili build directory
 target/
+builds/
 
 # lili build logs
 runtime.log*

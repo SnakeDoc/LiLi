@@ -39,6 +39,26 @@ error() {
     show_status ${FAIL}
 }
 
+pkg_error() {
+    if [ -z "${ERR_MSG}" ]; then
+        ERR_MSG="ERROR"
+    fi
+    if [ -z "${ERR_LOC}" ]; then
+        ERR_LOC=""
+    fi
+    if [ -z "${ERR_ID}" ]; then
+        ERR_ID=""
+    fi
+    error "${ERR_MSG} ${ERR_LOC} ${ERR_ID}"
+}
+
+fail_on_error() {
+    ERR_ID="${1}"
+    if [ "${ERR_ID}" != "0" ]; then
+        pkg_error
+    fi
+}
+
 locate_package() {
     echo $(find ${PACKAGES}/ -type d -name "$1")
 }
@@ -49,5 +69,7 @@ locate_package() {
 export -f check_status
 export -f show_status
 export -f error
+export -f pkg_error
+export -f fail_on_error
 export -f locate_package
 

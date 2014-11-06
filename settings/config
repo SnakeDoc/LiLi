@@ -12,6 +12,7 @@ export SCRIPTS=${BUILD_ROOT}/scripts
 export PACKAGES=${BUILD_ROOT}/packages
 export SOURCES=${BUILD_ROOT}/sources
 export SETTINGS=${BUILD_ROOT}/settings
+export BUILDS=${BUILD_ROOT}/builds
 
 export COMPILER_SCRIPTS=${SCRIPTS}/compiler
 export TOOLCHAIN_DEPS=${PACKAGES}/toolchain
