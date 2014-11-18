@@ -21,5 +21,5 @@ PKG_URL="http://www.musl-libc.org/releases/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS=""
 PKG_SECTION="devel"
 
-PKG_CONFIGURE_OPTS="--prefix=/ \
-                    --target=${CLFS_TARGET}"
+PKG_CONFIGURE_OPTS=(--prefix=/
+                    --target="${CLFS_TARGET}")

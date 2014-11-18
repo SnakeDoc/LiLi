@@ -90,7 +90,7 @@ mv -v "${PKG_NAME}-${PKG_VERSION}" "${PKG_NAME}"
 mkdir -v "${CLFS_SOURCES}/${PKG_NAME}-build"
 cd "${CLFS_SOURCES}/${PKG_NAME}-build/"
 
-"${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/configure" "${PKG_CONFIGURE_OPTS}"
+"${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/configure" "${PKG_CONFIGURE_OPTS[@]}"
 RESPONSE="${?}"
 if [ "${RESPONSE}" != "0" ]; then
     pkg_error "${RESPONSE}"

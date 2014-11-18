@@ -47,7 +47,7 @@ fi
 mkdir -v ${CLFS_SOURCES}/${PKG_NAME}-build
 cd ${CLFS_SOURCES}/${PKG_NAME}-build/
 
-CC="${CC} -Os" ${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/configure ${PKG_CONFIGURE_OPTS}
+CC="${CC} -Os" ${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/configure "${PKG_CONFIGURE_OPTS[@]}"
 RESPONSE=$?
 if [ ${RESPONSE} -ne 0 ]
 then

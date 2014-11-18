@@ -21,47 +21,48 @@ PKG_URL="ftp://gcc.gnu.org/pub/gcc/releases/${PKG_NAME}-${PKG_VERSION}/${PKG_NAM
 PKG_DEPENDS="linux,binutils,gmp,mpfr,mpc,musl-libc"
 PKG_SECTION="lang"
 
-STATIC_CONFIGURE_OPTS="--prefix=${CLFS_TOOLS} \
-                       --build=${CLFS_HOST} \
-                       --host=${CLFS_HOST} \
-                       --target=${CLFS_TARGET} \
-                       --with-sysroot=${CLFS_TOOLS}/${CLFS_TARGET} \
-                       --disable-nls \
-                       --disable-shared \
-                       --without-headers \
-                       --with-newlib \
-                       --disable-decimal-float \
-                       --disable-libgomp \
-                       --disable-libmudflap \
-                       --disable-libssp \
-                       --disable-libatomic \
-                       --disable-libquadmath \
-                       --disable-threads \
-                       --enable-languages=c \
-                       --disable-multilib \
-                       --with-mpfr-include=${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/mpfr/src \
-                       --with-mpfr-lib=${CLFS_SOURCES}/${PKG_NAME}-build/mpfr/src/.libs \
-                       --with-arch=${CLFS_ARM_ARCH} \
-                       --with-float=${CLFS_FLOAT} \
-                       --with-fpu=${CLFS_FPU} \
-                       --with-abi=${CLFS_ABI} \
-                       --with-mode=${CLFS_ARCH}"
+STATIC_CONFIGURE_OPTS=(--prefix="${CLFS_TOOLS}"
+                       --build="${CLFS_HOST}"
+                       --host="${CLFS_HOST}"
+                       --target="${CLFS_TARGET}"
+                       --with-sysroot="${CLFS_TOOLS}/${CLFS_TARGET}"
+                       --disable-nls
+                       --disable-shared
+                       --without-headers
+                       --with-newlib
+                       --disable-decimal-float
+                       --disable-libgomp
+                       --disable-libmudflap
+                       --disable-libssp
+                       --disable-libatomic
+                       --disable-libquadmath
+                       --disable-threads
+                       --enable-languages=c
+                       --disable-multilib
+                       --with-mpfr-include="${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/mpfr/src"
+                       --with-mpfr-lib="${CLFS_SOURCES}/${PKG_NAME}-build/mpfr/src/.libs"
+                       --with-arch="${CLFS_ARM_ARCH}"
+                       --with-float="${CLFS_FLOAT}"
+                       --with-fpu="${CLFS_FPU}"
+                       --with-abi="${CLFS_ABI}"
+                       --with-mode="${CLFS_ARCH}")
 
-PKG_CONFIGURE_OPTS="--prefix=${CLFS_TOOLS} \
-                    --build=${CLFS_HOST} \
-                    --target=${CLFS_TARGET} \
-                    --host=${CLFS_HOST} \
-                    --with-sysroot=${CLFS_TOOLS}/${CLFS_TARGET} \
-                    --disable-nls \
-                    --enable-languages=c,c++ \
-                    --enable-c99 \
-                    --enable-long-long \
-                    --disable-libmudflap \
-                    --disable-multilib \
-                    --with-mpfr-include=${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/mpfr/src \
-                    --with-mpfr-lib=${CLFS_SOURCES}/${PKG_NAME}-build/mpfr/src/.libs \
-                    --with-arch=${CLFS_ARM_ARCH} \
-                    --with-float=${CLFS_FLOAT} \
-                    --with-fpu=${CLFS_FPU} \
-                    --with-abi=${CLFS_ABI} \
-                    --with-mode=${CLFS_ARCH}"
+PKG_CONFIGURE_OPTS=(--prefix="${CLFS_TOOLS}"
+                    --build="${CLFS_HOST}"
+                    --target="${CLFS_TARGET}"
+                    --host="${CLFS_HOST}"
+                    --with-sysroot="${CLFS_TOOLS}/${CLFS_TARGET}"
+                    --disable-nls
+                    --enable-languages=c,c++
+                    --enable-c99
+                    --enable-long-long
+                    --disable-libmudflap
+                    --disable-multilib
+                    --with-mpfr-include="${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/mpfr/src"
+                    --with-mpfr-lib="${CLFS_SOURCES}/${PKG_NAME}-build/mpfr/src/.libs"
+                    --with-arch="${CLFS_ARM_ARCH}"
+                    --with-float="${CLFS_FLOAT}"
+                    --with-fpu="${CLFS_FPU}"
+                    --with-abi="${CLFS_ABI}"
+                    --with-mode="${CLFS_ARCH}")
+

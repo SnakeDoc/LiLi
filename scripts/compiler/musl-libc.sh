@@ -30,7 +30,7 @@ tar -zxvf "${PKG_NAME}-${PKG_VERSION}.tar.gz"
 
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" ./configure "${PKG_CONFIGURE_OPTS}"
+CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" ./configure "${PKG_CONFIGURE_OPTS[@]}"
 RESPONSE="${?}"
 if [ "${RESPONSE}" != "0" ]; then
     pkg_error "${RESPONSE}"

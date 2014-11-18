@@ -23,12 +23,12 @@ PKG_URL="https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.42.9/
 PKG_DEPENDS=""
 PKG_SECTION="system"
 
-PKG_CONFIGURE_OPTS="--prefix=/usr \
-                    --with-root-prefix="" \
-                    --host=${CLFS_TARGET} \
-                    --disable-tls \
-                    --disable-debugfs \
-                    --disable-e2initrd-helper \
-                    --disable-nls \
-                    --enable-elf-shlibs"
+PKG_CONFIGURE_OPTS=(--prefix=/usr
+                    --with-root-prefix=""
+                    --host="${CLFS_TARGET}"
+                    --disable-tls
+                    --disable-debugfs
+                    --disable-e2initrd-helper
+                    --disable-nls
+                    --enable-elf-shlibs)
 

@@ -21,8 +21,8 @@ PKG_URL="http://ftp.gnu.org/gnu/binutils/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS=""
 PKG_SECTION="devel"
 
-PKG_CONFIGURE_OPTS="--prefix=${CLFS_TOOLS} \
-                    --target=${CLFS_TARGET} \
-                    --with-sysroot=${CLFS_TOOLS}/${CLFS_TARGET} \
-                    --disable-nls \
-                    --disable-multilib"
+PKG_CONFIGURE_OPTS=(--prefix="${CLFS_TOOLS}"
+                    --target="${CLFS_TARGET}"
+                    --with-sysroot="${CLFS_TOOLS}/${CLFS_TARGET}"
+                    --disable-nls
+                    --disable-multilib)
