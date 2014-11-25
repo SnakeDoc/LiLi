@@ -31,7 +31,7 @@ tar -zxvf "${PKG_NAME}-${PKG_VERSION}.tar.gz"
 
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
-cp "configure{,.orig}"
+cp configure{,.orig}
 RESPONSE="${?}"
 if [ "${RESPONSE}" != "0" ]; then
     pkg_error "${RESPONSE}"

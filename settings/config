@@ -38,7 +38,7 @@ export KERNEL_VERSION="3.12"
 
 export CLFS_FLOAT="hard"
 export CLFS_FPU="vfp"
-export CLFS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export CLFS_HOST="$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")"
 export CLFS_TARGET="arm-linux-musleabihf"
 export CLFS_ARCH="arm"
 export CLFS_ARM_ARCH="armv6zk"

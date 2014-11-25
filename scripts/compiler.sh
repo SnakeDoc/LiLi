@@ -26,7 +26,7 @@ function error() {
 }
 
 execute_script() {
-    if [ ! "$(${COMPILER_SCRIPTS}/${2})" ]; then
+    if ! "${COMPILER_SCRIPTS}/${2}"; then
         error "${1}" "${2}" "${?}"
     fi
 }
