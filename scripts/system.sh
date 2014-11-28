@@ -30,7 +30,7 @@ error() {
 
 execute_script() {
     echo "Executing: ${2}"
-    if [ ! "${SYSTEM_SCRIPTS}/${2}" ]; then
+    if ! "${SYSTEM_SCRIPTS}/${2}"; then
         error "${1}" "${2}" "${?}"
     fi
 }
