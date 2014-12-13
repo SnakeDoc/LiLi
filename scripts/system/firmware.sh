@@ -27,15 +27,11 @@ if [ "${cur_branch}" != "master" ]; then
 fi
 git reset --hard origin/master
 
-# cleanup old firmware
-echo "Cleanup old firmware"
-rm -v "${FAKEROOT}/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf}"
-
 cd "${CLFS_SOURCES}/${PKG_NAME}/"
 
 # copy firmware to boot directory
 echo "Installing firmware"
-cp -v "${CLFS_SOURCES}/firmware/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf}" "${FAKEROOT}/boot/"
+cp -v "${CLFS_SOURCES}"/firmware/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf} "${FAKEROOT}/boot/"
 
 clear > "${FAKEROOT}/boot/cmdline.txt"
 echo "Installing boot variables"
