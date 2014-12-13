@@ -70,7 +70,7 @@ fail_on_error "${?}"
 
 ########## logs ##########
 echo "Installing logs"
-touch "${FAKEROOT}/var/run/utmp" "${FAKEROOT}/var/log/{btmp,lastlog,wtmp}"
+touch "${FAKEROOT}/var/run/utmp" "${FAKEROOT}/var/log/"{btmp,lastlog,wtmp}
 fail_on_error "${?}"
 chmod -v 664 "${FAKEROOT}/var/run/utmp" "${FAKEROOT}/var/log/lastlog"
 fail_on_error "${?}"
