@@ -2,13 +2,12 @@
 
 # Linux Kernel
 
+set -e
+set -u
+
 pkg_dir="$(locate_package 'linux')"
 
 . "${pkg_dir}/package.mk"
-
-pkg_error() {
-    error "Error on package ${PKG_NAME}" "kernel.sh" "${1}"
-}
 
 cd "${CLFS_SOURCES}/"
 if [ ! -d "${CLFS_SOURCES}/${PKG_NAME}" ]; then
@@ -19,11 +18,6 @@ cd "${CLFS_SOURCES}/${PKG_NAME}/"
 
 # make sure source is clean
 make mrproper
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 # ensure we have the latest source and correct version
 git fetch
@@ -36,40 +30,15 @@ git reset --hard "origin/rpi-${KERNEL_VERSION}.y"
 
 # make sure source is clean
 make mrproper
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 ARCH="${CLFS_ARCH}" make bcmrpi_cutdown_defconfig
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_ENV_PATH}/${CLFS_TARGET}-" make oldconfig
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_ENV_PATH}/${CLFS_TARGET}-" make
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 make ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_ENV_PATH}/${CLFS_TARGET}-" \
     INSTALL_MOD_PATH="${FAKEROOT}" modules_install
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 ########## Get tools ##########
 pkg_dir="$(locate_package 'tools')"
@@ -103,20 +72,10 @@ pkg_dir="$(locate_package 'linux')"
 # make image
 echo "Creating kernel image"
 ./imagetool-uncompressed.py "${CLFS_SOURCES}/${PKG_NAME}/arch/${CLFS_ARCH,,}/boot/Image"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 # move kernel image to targetfs boot directory
 echo "Installing kernel.img"
 mv -v kernel.img "${FAKEROOT}/boot/"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
-exit "${RESPONSE}"
+exit 0
 

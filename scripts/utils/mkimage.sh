@@ -2,6 +2,9 @@
 
 # Make Image of Filesystem
 
+set -e
+set -u
+
 . settings/config
 . scripts/utils/utils.sh
 
@@ -96,4 +99,6 @@ check_status
 ## Completed ##
 echo -n "Image created:"
 show_status "${OK}"
+
+exit 0
 

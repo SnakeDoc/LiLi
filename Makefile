@@ -1,34 +1,32 @@
 # Makefile for LiLi
 
-LOG="runtime.log"
-
 ROTATE_LOG:=$(shell bash ./scripts/utils/rotate_log.sh)
 
 all: clean-all compiler system unpack
 
 compiler: clean-compiler
-	/bin/bash -c "time ./scripts/compiler.sh 2>&1 | tee ${LOG}"
+	./scripts/compiler.sh
 
 system: clean-system
-	/bin/bash -c "time ./scripts/system.sh 2>&1 | tee ${LOG}"
+	./scripts/system.sh
 
 unpack:
-	/bin/bash -c "time ./scripts/utils/unpack.sh"
+	./scripts/utils/unpack.sh
 
 image: clean-packages clean-system system
-	/bin/bash -c "time ./scripts/utils/mkimage.sh"
+	./scripts/utils/mkimage.sh
 
 clean-sources:
-	/bin/bash -c "time ./scripts/utils/clean_sources.sh"
+	./scripts/utils/clean_sources.sh
 
 clean-compiler:
-	/bin/bash -c "time ./scripts/utils/clean_compiler.sh"
+	./scripts/utils/clean_compiler.sh
 
 clean-system:
-	/bin/bash -c "time ./scripts/utils/clean_system.sh"
+	./scripts/utils/clean_system.sh
 
 clean-packages:
-	/bin/bash -c "time ./scripts/utils/clean_packages.sh"
+	./scripts/utils/clean_packages.sh
 
 clean-all:
-	/bin/bash -c "time ./scripts/utils/clean_all.sh"
+	./scripts/utils/clean_all.sh

@@ -2,23 +2,14 @@
 
 # Install Base System Files
 
-pkg_error() {
-    error "Error on package base_files" "base_files.sh" "${1}"
-}
-
-fail_on_error() {
-    if [ "${1}" != "0" ]; then
-        pkg_error "${1}"
-        exit "${1}"
-    fi
-}
+set -e
+set -u
 
 echo "Installing base system files"
 
 ########## mtab ##########
 echo "Installing /etc/mtab"
 ln -svf ../proc/mounts "${FAKEROOT}/etc/mtab"
-fail_on_error "${?}"
 
 ########## passwd ##########
 echo "Installing /etc/passwd"
@@ -35,7 +26,6 @@ operator:x:50:0:operator:/root:/bin/ash
 postmaster:x:51:30:postmaster:/var/spool/mail:/bin/false
 nobody:x:65534:65534:nobody:/:/bin/false
 EOF
-fail_on_error "${?}"
 
 ########## group ##########
 echo "Installing /etc/group"
@@ -66,21 +56,16 @@ users:x:100:
 nogroup:x:65533:
 nobody:x:65534:
 EOF
-fail_on_error "${?}"
 
 ########## logs ##########
 echo "Installing logs"
 touch "${FAKEROOT}/var/run/utmp" "${FAKEROOT}/var/log/"{btmp,lastlog,wtmp}
-fail_on_error "${?}"
 chmod -v 664 "${FAKEROOT}/var/run/utmp" "${FAKEROOT}/var/log/lastlog"
-fail_on_error "${?}"
 
 # permissions
 echo "Setting group on utmp and lastlog log files"
 chgrp -v 13 "${FAKEROOT}/var/run/utmp"
-fail_on_error "${?}"
 chgrp -v 13 "${FAKEROOT}/var/log/lastlog"
-fail_on_error "${?}"
 
 ########## fstab ##########
 echo "Installing /etc/fstab"
@@ -99,7 +84,6 @@ devpts         /dev/pts     devpts gid=4,mode=620   0     0
 shm            /dev/shm     tmpfs  defaults         0     0
 # End /etc/fstab
 EOF
-fail_on_error "${?}"
 
 ########## issue file ##########
 echo "Installing /etc/issue"
@@ -112,7 +96,6 @@ cat >> "${FAKEROOT}/etc/issue" << EOF
 Kernel \r on an \m
 
 EOF
-fail_on_error "${?}"
 
 ########## mdev ##########
 echo "Installing /etc/mdev.conf"
@@ -223,7 +206,6 @@ hpilo!(.*)      root:root 0660 =hpilo/%1
 # xen stuff
 xvd[a-z]        root:root 0660 */lib/mdev/xvd_links
 EOF
-fail_on_error "${?}"
 
 ########## profile ##########
 echo "Installing /etc/profile"
@@ -249,7 +231,6 @@ export EDITOR='/bin/vi'
 
 # End /etc/profile
 EOF
-fail_on_error "${?}"
 
 ########## inittab ##########
 echo "Installing /etc/inittab"
@@ -272,7 +253,6 @@ tty6::respawn:/sbin/getty 38400 tty6
 ::shutdown:/etc/rc.d/shutdown
 ::ctrlaltdel:/sbin/reboot
 EOF
-fail_on_error "${?}"
 
 ########## shells ##########
 echo "Installing /etc/shells"
@@ -280,7 +260,6 @@ cat > "${FAKEROOT}/etc/shells" << "EOF"
 /bin/sh
 /bin/ash
 EOF
-fail_on_error "${?}"
 
 ########## release ##########
 echo "Installing /etc/${OS_NAME,,}-release"
@@ -289,12 +268,10 @@ echo "Installing /etc/${OS_NAME,,}-release"
 cat > "${FAKEROOT}/etc/${OS_NAME,,}-release" << EOF
 "${OS_NAME}" release "${VERSION}"
 EOF
-fail_on_error "${?}"
 
 ########## hostname ##########
 echo "Installing /etc/HOSTNAME"
 echo "${OS_NAME,,}" > "${FAKEROOT}/etc/HOSTNAME"
-fail_on_error "${?}"
 
 ########## hosts ##########
 echo "Installing /etc/hosts"
@@ -307,7 +284,6 @@ cat > "${FAKEROOT}/etc/hosts" << EOF
 
 # End /etc/hosts
 EOF
-fail_on_error "${?}"
 
 exit 0 # OK
 

@@ -2,13 +2,13 @@
 
 # Install Dropbear SSH Client/Server
 
+set -e
+set -u
+
 pkg_dir="$(locate_package 'dropbear')"
 
 . "${pkg_dir}/package.mk"
 
-pkg_error() {
-    error "Error on package ${PKG_NAME}" "dropbear.sh" "${1}"
-}
 echo "CC: ${CC}"
 cd "${CLFS_SOURCES}/"
 if [ ! -e "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}.tar.bz2" ]; then
@@ -28,36 +28,16 @@ tar -xvjf "${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
 sed -i 's/.*mandir.*//g' Makefile.in
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 CC="${CC} -Os" ./configure --prefix=/usr --host="${CLFS_TARGET}"
 make MULTI=1 \
   PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 make MULTI=1 \
   PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" \
   install DESTDIR="${FAKEROOT}"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 install -dv "${FAKEROOT}/etc/dropbear"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 # setup dropbear bootscripts
 pkg_dir="$(locate_package 'bootscripts')"
@@ -83,11 +63,6 @@ tar -zxvf "${PKG_NAME}.tar.gz"
 cd "${CLFS_SOURCES}/${PKG_NAME}/"
 
 make install-dropbear DESTDIR="${FAKEROOT}"
-RESPONSE="${?}"
-if [ "${RESPONSE}" != "0" ]; then
-    pkg_error "${RESPONSE}"
-    exit "${RESPONSE}"
-fi
 
 # cleanup bootscripts
 cd "${CLFS_SOURCES}/"
@@ -102,5 +77,5 @@ pkg_dir="$(locate_package 'dropbear')"
 cd "${CLFS_SOURCES}/"
 rm -rf "${PKG_NAME}-${PKG_VERSION}"
 
-exit "${RESPONSE}"
+exit 0
 

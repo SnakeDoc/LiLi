@@ -2,13 +2,12 @@
 
 # Raspberry Pi Firmware
 
+set -e
+set -u
+
 pkg_dir="$(locate_package 'firmware')"
 
 . "${pkg_dir}/package.mk"
-
-pkg_error() {
-    error "Error on package ${PKG_NAME}" "firmware.sh" "${1}"
-}
 
 cd "${CLFS_SOURCES}/"
 if [ ! -d "${CLFS_SOURCES}/${PKG_NAME}" ]; then

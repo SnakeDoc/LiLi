@@ -2,6 +2,9 @@
 
 # Fakeroot utils
 
+set -e
+set -u
+
 . settings/config
 . scripts/utils/utils.sh
 

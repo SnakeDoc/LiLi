@@ -2,6 +2,9 @@
 
 # Build the LiLi System
 
+set -e
+set -u
+
 . settings/config
 . settings/toolchain
 . scripts/utils/utils.sh
@@ -20,19 +23,9 @@ build_system() {
     done <<< "${1}"
 }
 
-error() {
-    echo "Error building ${1}: failed on ${2}"
-    echo "Error Code: ${3}"
-    echo -n "Building System: "
-    show_status "${FAIL}"
-    exit "${3}"
-}
-
 execute_script() {
     echo "Executing: ${2}"
-    if ! "${SYSTEM_SCRIPTS}/${2}"; then
-        error "${1}" "${2}" "${?}"
-    fi
+    "${SYSTEM_SCRIPTS}/${2}"
 }
 
 build_package() {

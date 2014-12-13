@@ -2,16 +2,8 @@
 
 # Archive the root filesystem
 
-pkg_error() {
-    error "Error on package archive" "archive.sh" "${1}"
-}
-
-fail_on_error() {
-    if [ "${1}" != "0" ]; then
-        pkg_error "${1}"
-        exit "${1}"
-    fi
-}
+set -e
+set -u
 
 # make sure all data is synced to disk
 sync

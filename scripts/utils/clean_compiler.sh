@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -u
+
 . settings/config
 
 # Clean compiler directory

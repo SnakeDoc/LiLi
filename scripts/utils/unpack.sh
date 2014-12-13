@@ -3,6 +3,9 @@
 # Unpack Tools
 #  - Used to unpack packages and install base file system
 
+set -e
+set -u
+
 . settings/config
 . scripts/utils/utils.sh
 
@@ -49,4 +52,6 @@ done
 
 echo ""
 echo "All packages unpacked!"
+
+exit 0
 

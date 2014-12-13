@@ -2,16 +2,8 @@
 
 # Network
 
-pkg_error() {
-    error "Error on package network" "network.sh" "${1}"
-}
-
-fail_on_error() {
-    if [ "${1}" != "0" ]; then
-        pkg_error "${1}"
-        exit "${1}"
-    fi
-}
+set -e
+set -u
 
 echo "Installing network"
 # make it so, number 1!
@@ -65,26 +57,19 @@ status)
         exit 1
 esac
 EOF
-fail_on_error "${?}"
 
 chmod +x "${FAKEROOT}/etc/rc.d/init.d/network"
-fail_on_error "${?}"
 
 ln -svf ../init.d/network "${FAKEROOT}/etc/rc.d/start/S01network"
-fail_on_error "${?}"
 ln -svf ../init.d/network "${FAKEROOT}/etc/rc.d/stop/K999network"
-fail_on_error "${?}"
 
 mkdir -pv "${FAKEROOT}/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d"
-fail_on_error "${?}"
 mkdir -pv "${FAKEROOT}/usr/share/udhcpc"
-fail_on_error "${?}"
 
 cat > "${FAKEROOT}/etc/network/interfaces" << "EOF"
 auto eth0
 iface eth0 inet dhcp
 EOF
-fail_on_error "${?}"
 
 cat > "${FAKEROOT}/usr/share/udhcpc/default.script" << "EOF"
 #!/bin/sh
@@ -126,10 +111,8 @@ esac
 
 exit 0
 EOF
-fail_on_error "${?}"
 
 chmod +x "${FAKEROOT}/usr/share/udhcpc/default.script"
-fail_on_error "${?}"
 
-exit 0 # OK
+exit 0
 

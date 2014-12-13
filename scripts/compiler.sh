@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -u
+
 . settings/config
 . scripts/utils/utils.sh
 
@@ -17,18 +20,8 @@ build_toolchain() {
     done <<< "${1}"
 }
 
-function error() {
-    echo "Error building ${1}: failed on ${2}"
-    echo "Error Code: ${3}"
-    echo -n "Build Toolchain: "
-    show_status "${FAIL}"
-    exit "${3}"
-}
-
 execute_script() {
-    if ! "${COMPILER_SCRIPTS}/${2}"; then
-        error "${1}" "${2}" "${?}"
-    fi
+    "${COMPILER_SCRIPTS}/${1}"
 }
 
 build_package() {
@@ -46,7 +39,7 @@ build_package() {
                  )
 
             for SCRIPT_NAME in "${scripts[@]}"; do
-                execute_script "${1}" "${SCRIPT_NAME}"
+                execute_script "${SCRIPT_NAME}"
                 echo ""
                 echo -n "${SCRIPT_NAME}"
                 show_status "${OK}"
@@ -79,7 +72,6 @@ build_toolchain "${PKG_DEPENDS}"
 echo ""
 echo "Testing toolchain..."
 "${COMPILER_SCRIPTS}/test_compiler.sh"
-error_on_fail "${?}"
 
 # finish script
 echo ""

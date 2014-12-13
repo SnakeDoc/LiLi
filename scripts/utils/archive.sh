@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -u
+
 . settings/config
 . scripts/utils/utils.sh
 
@@ -26,12 +29,10 @@ if [ -d "${FAKEROOT_PKGDIR}" ]; then
 
     # make tar.bz2 archive
     tar jcfv "${BUILDS}/${ARCHIVE_NAME}-packages.tar.bz2" *
-    fail_on_error $?
     sync
 
     # make tar.gz archive
     tar cvzf "${BUILDS}/${ARCHIVE_NAME}-packages.tar.gz" *
-    fail_on_error $?
     sync
 
     cd "${pre}/"
@@ -49,12 +50,10 @@ cd "${FAKEROOT}/"
 
 # Make tar.bz2 archive
 tar jcfv "${BUILDS}/${ARCHIVE_NAME}-rootfs.tar.bz2" *
-fail_on_error $?
 sync
 
 # Make tar.gz archive
 tar pzcvf "${BUILDS}/${ARCHIVE_NAME}-rootfs.tar.gz" *
-fail_on_error $?
 sync
 
 cd "${pre}/"
@@ -67,14 +66,12 @@ echo "Creating archive of disk image"
 imgs=$(find "${IMAGE_DIR}/" -type f -name "*.img")
 for i in "${imgs[@]}"; do
     cp "${i}" "${BUILDS}/"
-    fail_on_error $?
     sync
 
     gzip -c "${i}" > "${i}.gz"
-    fail_on_error $?
     sync
+
     mv "${i}.gz" "${BUILDS}/"
-    fail_on_error $?
     sync
 done
 
