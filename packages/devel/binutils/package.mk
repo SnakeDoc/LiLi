@@ -25,4 +25,5 @@ PKG_CONFIGURE_OPTS=(--prefix="${CLFS_TOOLS}"
                     --target="${CLFS_TARGET}"
                     --with-sysroot="${CLFS_TOOLS}/${CLFS_TARGET}"
                     --disable-nls
-                    --disable-multilib)
+                    --disable-multilib
+                    --disable-werror)
