@@ -11,12 +11,12 @@ set -u
 # Variable will indicate if the compiler test passed
 RESPONSE=0
 
+# create a test c program to compile
+TEST_PROGRAM="test"
+
 # make sure we're clean
 rm -f "${TEST_PROGRAM}.c"
 rm -f "${TEST_PROGRAM}.o"
-
-# create a test c program to compile
-TEST_PROGRAM="test"
 
 cat > "${TEST_PROGRAM}.c" << "EOF"
 #include <stdio.h>
