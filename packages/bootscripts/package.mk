@@ -17,7 +17,11 @@
 PKG_NAME="bootscripts-embedded"
 PKG_VERSION=""
 PKG_URL_TYPE="http"
-PKG_URL="http://git.cross-lfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz"
+# this url seems to not work anymore...
+#   although the mailing list seems to indicate it might be back in the future...
+#   so keep it here as a reference...
+#PKG_URL="http://git.cross-lfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz"
+PKG_URL="http://git.clfs.org/?p=bootscripts-embedded.git;a=snapshot;h=HEAD;sf=tgz"
 PKG_DEPENDS=""
 PKG_SECTION="bootscripts"
 
