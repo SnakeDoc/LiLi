@@ -7,7 +7,7 @@ set -u
 
 echo "Installing shared libraries"
 
-cp -vP "${CLFS_TOOLS}/${CLFS_TARGET}/lib/*.so*" "${FAKEROOT}/lib/"
+cp -vP "${CLFS_TOOLS}/${CLFS_TARGET}/lib/"*.so* "${FAKEROOT}/lib/"
 
 exit 0
 
