@@ -11,10 +11,10 @@ check_status() {
 	echo -en "\e[65G"
         echo -en "["
 	if [ $ERR = 0 ]; then
-		echo -en "\e[1;92m"
+		echo -en "\e[1;32m"
                 echo -en "  OK  "
 	else
-		echo -en "\e[1;91m"
+		echo -en "\e[1;31m"
                 echo -en "FAILED"
 	fi
 	echo -en "\e[0;0m"
@@ -25,10 +25,10 @@ show_status() {
         echo -en "\e[65G"
         echo -en "["
         if [ $1 = 0 ]; then
-                echo -en "\e[1;92m"
+                echo -en "\e[1;32m"
                 echo -en "  OK  "
         else
-                echo -en "\e[1;91m"
+                echo -en "\e[1;31m"
                 echo -en "FAILED"
         fi
         echo -en "\e[0;0m"
