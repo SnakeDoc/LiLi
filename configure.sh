@@ -2,8 +2,8 @@
 
 # Configure script to check host requirements
 
-. settings/functions
 . settings/config
+. scripts/utils/utils.sh
 
 # Return Status Code
 #   (normal exit is zero)
