@@ -8,9 +8,6 @@ set -u
 
 # Archives builds
 
-ERR_MSG="Error while archiving build!"
-ERR_LOC="${SCRIPTS}/utils/archive.sh"
-
 BUILD_DATE=$(date +%Y%m%d)
 
 SHORT_VERSION=$(echo ${VERSION} | cut -d " " -f 1)
