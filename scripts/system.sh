@@ -40,8 +40,53 @@ build_all_packages() {
     
 }
 
+######################################
+#           CROSS COMPILER           #
+######################################
+# ensure we have a cross compiler handy
+#  ... we prefer the LiLiCompiler ...
+VERIFY="$(${CC} --version)"
+if [ "${?}" != "0" ] && [ "$(echo ${VERIFY} | cut -d ' ' -f 1)" != "${CC}" ]; then
+    cd "${CLFS_SOURCES}/"
+    if [ ! -d "${CLFS_SOURCES}/LiLiCompiler" ]; then
+        git clone --depth 1 https://github.com/SnakeDoc/LiLiCompiler --progress
+    fi
+
+    cd "${CLFS_SOURCES}/LiLiCompiler/"
+
+    # make sure we have the lastest compiler source
+    #  and are on the 'master' branch
+    git fetch
+    cur_branch="$(git symbolic-ref --short -q HEAD)"
+    echo "Current Branch: ${cur_branch}"
+    echo ""
+    if [ "${cur_branch}" != "master" ]; then
+        git reset --hard "origin/${cur_branch}"
+        git checkout master
+    fi
+    git reset --hard origin/master
+
+    # compile the cross compiler
+    cd "${CLFS_SOURCES}/LiLiCompiler/"
+    make compiler
+    sync
+fi
+######################################
+#         END CROSS COMPILER         #
+######################################
+
+######################################
+#     BUILD BASE SYSTEM PACKAGES     #
+######################################
+build_base_packages
+######################################
+#   END BUILD BASE SYSTEM PACKAGES   #
+######################################
+
 echo ""
 echo -n "System Package Build: "
 show_status "${OK}"
 echo ""
+
+exit 0
 
