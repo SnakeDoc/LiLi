@@ -37,7 +37,7 @@ build_base_packages() {
 }
 
 build_all_packages() {
-    
+    true;
 }
 
 ######################################
