@@ -1,11 +1,6 @@
-# Makefile for LiLi
+# Makefile for LiLi system
 
-ROTATE_LOG:=$(shell bash ./scripts/utils/rotate_log.sh)
-
-all: clean-all compiler system unpack
-
-compiler: clean-compiler
-	./scripts/compiler.sh
+all: clean-all system unpack
 
 system: clean-system
 	./scripts/system.sh
@@ -18,9 +13,6 @@ image: clean-packages clean-system system
 
 clean-sources:
 	./scripts/utils/clean_sources.sh
-
-clean-compiler:
-	./scripts/utils/clean_compiler.sh
 
 clean-system:
 	./scripts/utils/clean_system.sh
