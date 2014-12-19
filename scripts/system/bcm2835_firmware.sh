@@ -5,7 +5,7 @@
 set -e
 set -u
 
-pkg_dir="$(locate_package 'firmware')"
+pkg_dir="$(locate_package 'bcm2835_firmware')"
 
 . "${pkg_dir}/package.mk"
 
