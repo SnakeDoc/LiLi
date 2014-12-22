@@ -7,6 +7,9 @@ set -u
 
 echo "Installing base system files"
 
+mkdir -pv "${FAKEROOT}/etc"
+mkdir -pv "${FAKEROOT}/var/"{run,log}
+
 ########## mtab ##########
 echo "Installing /etc/mtab"
 ln -svf ../proc/mounts "${FAKEROOT}/etc/mtab"

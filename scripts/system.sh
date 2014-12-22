@@ -26,7 +26,7 @@ build_base_packages() {
               "zlib.sh")
 
     for package in "${packages[@]}"; do
-        setup_fakeroot
+        reset_fakeroot
         "${SYSTEM_SCRIPTS}/${package}"
         package_fakeroot "$(echo ${package} | cut -d "." -f 1)"
         echo ""

@@ -75,6 +75,7 @@ echo "Creating kernel image"
 
 # move kernel image to targetfs boot directory
 echo "Installing kernel.img"
+mkdir -pv "${FAKEROOT}/boot"
 mv -v kernel.img "${FAKEROOT}/boot/"
 
 exit 0

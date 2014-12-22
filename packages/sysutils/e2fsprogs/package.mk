@@ -14,8 +14,6 @@
 #   limitations under the License.                                             #
 ################################################################################
 
-. settings/config
-
 PKG_NAME="e2fsprogs"
 PKG_VERSION="1.42.9"
 PKG_URL_TYPE="https"
