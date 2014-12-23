@@ -31,6 +31,7 @@ cd "${CLFS_SOURCES}/${PKG_NAME}/"
 
 # copy firmware to boot directory
 echo "Installing firmware"
+mkdir -pv "${FAKEROOT}/boot"
 cp -v "${CLFS_SOURCES}"/firmware/boot/{bootcode.bin,fixup.dat,fixup_cd.dat,start.elf,start_cd.elf} "${FAKEROOT}/boot/"
 
 clear > "${FAKEROOT}/boot/cmdline.txt"

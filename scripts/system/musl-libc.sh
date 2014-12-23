@@ -38,6 +38,7 @@ mkdir -pv "${TEMP_INSTALL}"
 DESTDIR="${TEMP_INSTALL}" make install
 
 # let's now copy over the files we need into the fakeroot
+mkdir -pv "${FAKEROOT}/lib"
 cp -vP "${TEMP_INSTALL}/lib/"*.so* "${FAKEROOT}/lib/"
 sync
 

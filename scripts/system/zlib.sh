@@ -42,6 +42,7 @@ mkdir -pv "${TEMP_INSTALL}"
 make prefix="${TEMP_INSTALL}" install
 
 # let's now copy over the file we need into fakeroot
+mkdir -pv "${FAKEROOT}/lib"
 cp -vP "${TEMP_INSTALL}/lib/"*.so* "${FAKEROOT}/lib/"
 
 # cleanup

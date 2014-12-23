@@ -46,8 +46,8 @@ build_all_packages() {
 # ensure we have a cross compiler handy
 #  ... we prefer the LiLiCompiler ...
 use_toolchain_env
-VERIFY="$(${CC} --version)" || true
-if [ "$(echo ${VERIFY} | cut -d ' ' -f 1)" != "${CC}" ]; then
+VERIFY="$(${CC} --version | awk 'NR==1{print $1}')" || true
+if [ "${VERIFY}" != "$(basename ${CC})" ]; then
     # use the system env vars for gcc, etc...
     use_system_env
     mkdir -pv "${CLFS_SOURCES}"
