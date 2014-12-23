@@ -1,6 +1,9 @@
 # Makefile for LiLi system
 
-all: clean-all system unpack
+all: release
+
+release: clean-all image
+	./scripts/utils/archive.sh
 
 system: clean-system
 	./scripts/system.sh
@@ -8,7 +11,7 @@ system: clean-system
 unpack:
 	./scripts/utils/unpack.sh
 
-image: clean-packages clean-system system
+image: system
 	./scripts/utils/mkimage.sh
 
 clean-sources:
