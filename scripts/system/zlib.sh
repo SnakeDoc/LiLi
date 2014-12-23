@@ -5,10 +5,6 @@
 set -e
 set -u
 
-. settings/config
-. settings/toolchain
-. scripts/utils/utils.sh
-
 pkg_dir="$(locate_package 'zlib')"
 
 . "${pkg_dir}/package.mk"

@@ -1,8 +1,26 @@
 # Toolchain Environment Variables
 
-#. ${SETTINGS}/config
+# store system env vars
+SYSTEM_CC="$(which gcc)"
+SYSTEM_CXX="$(which g++)"
+SYSTEM_AR="$(which ar)"
+SYSTEM_AS="$(which as)"
+SYSTEM_LD="$(which ld)"
+SYSTEM_RANLIB="$(which ranlib)"
+SYSTEM_READELF="$(which readelf)"
+SYSTEM_STRIP="$(which strip)"
 
-# unset existing env vars
+# store toolchain env vars
+export TOOLCHAIN_CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc"
+export TOOLCHAIN_CXX="${CLFS_ENV_PATH}/${CLFS_TARGET}-g++"
+export TOOLCHAIN_AR="${CLFS_ENV_PATH}/${CLFS_TARGET}-ar"
+export TOOLCHAIN_AS="${CLFS_ENV_PATH}/${CLFS_TARGET}-as"
+export TOOLCHAIN_LD="${CLFS_ENV_PATH}/${CLFS_TARGET}-ld"
+export TOOLCHAIN_RANLIB="${CLFS_ENV_PATH}/${CLFS_TARGET}-ranlib"
+export TOOLCHAIN_READELF="${CLFS_ENV_PATH}/${CLFS_TARGET}-readelf"
+export TOOLCHAIN_STRIP="${CLFS_ENV_PATH}/${CLFS_TARGET}-strip"
+
+# unset system env vars
 unset CC
 unset CXX
 unset AR
@@ -12,13 +30,41 @@ unset RANLIB
 unset READELF
 unset STRIP
 
-# set our toolchain as current env vars
-export CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc"
-export CXX="${CLFS_ENV_PATH}/${CLFS_TARGET}-g++"
-export AR="${CLFS_ENV_PATH}/${CLFS_TARGET}-ar"
-export AS="${CLFS_ENV_PATH}/${CLFS_TARGET}-as"
-export LD="${CLFS_ENV_PATH}/${CLFS_TARGET}-ld"
-export RANLIB="${CLFS_ENV_PATH}/${CLFS_TARGET}-ranlib"
-export READELF="${CLFS_ENV_PATH}/${CLFS_TARGET}-readelf"
-export STRIP="${CLFS_ENV_PATH}/${CLFS_TARGET}-strip"
+use_system_env() {
+    unset CC
+    unset CXX
+    unset AR
+    unset AS
+    unset LD
+    unset RANLIB
+    unset READELF
+    unset STRIP
+    export CC="${SYSTEM_CC}"
+    export CXX="${SYSTEM_CXX}"
+    export AR="${SYSTEM_AR}"
+    export AS="${SYSTEM_AS}"
+    export LD="${SYSTEM_LD}"
+    export RANLIB="${SYSTEM_RANLIB}"
+    export READELF="${SYSTEM_READELF}"
+    export STRIP="${SYSTEM_STRIP}"
+}
+
+use_toolchain_env() {
+    unset CC
+    unset CXX
+    unset AR
+    unset AS
+    unset LD
+    unset RANLIB
+    unset READELF
+    unset STRIP
+    export CC="${TOOLCHAIN_CC}"
+    export CXX="${TOOLCHAIN_CXX}"
+    export AR="${TOOLCHAIN_AR}"
+    export AS="${TOOLCHAIN_AS}"
+    export LD="${TOOLCHAIN_LD}"
+    export RANLIB="${TOOLCHAIN_RANLIB}"
+    export READELF="${TOOLCHAIN_READELF}"
+    export STRIP="${TOOLCHAIN_STRIP}"
+}
 

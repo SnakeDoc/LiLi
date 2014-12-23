@@ -45,8 +45,12 @@ build_all_packages() {
 ######################################
 # ensure we have a cross compiler handy
 #  ... we prefer the LiLiCompiler ...
-VERIFY="$(${CC} --version)"
-if [ "${?}" != "0" ] && [ "$(echo ${VERIFY} | cut -d ' ' -f 1)" != "${CC}" ]; then
+use_toolchain_env
+VERIFY="$(${CC} --version)" || true
+if [ "$(echo ${VERIFY} | cut -d ' ' -f 1)" != "${CC}" ]; then
+    # use the system env vars for gcc, etc...
+    use_system_env
+    mkdir -pv "${CLFS_SOURCES}"
     cd "${CLFS_SOURCES}/"
     if [ ! -d "${CLFS_SOURCES}/LiLiCompiler" ]; then
         git clone --depth 1 https://github.com/SnakeDoc/LiLiCompiler --progress
@@ -70,6 +74,10 @@ if [ "${?}" != "0" ] && [ "$(echo ${VERIFY} | cut -d ' ' -f 1)" != "${CC}" ]; th
     cd "${CLFS_SOURCES}/LiLiCompiler/"
     make compiler
     sync
+
+    # copy the cross compiler to our working directory
+    cp -R "${CLFS_SOURCES}/LiLiCompiler/target/cross-tools" "${CLFS}/"
+    sync
 fi
 ######################################
 #         END CROSS COMPILER         #
@@ -78,6 +86,7 @@ fi
 ######################################
 #     BUILD BASE SYSTEM PACKAGES     #
 ######################################
+use_toolchain_env
 build_base_packages
 ######################################
 #   END BUILD BASE SYSTEM PACKAGES   #
