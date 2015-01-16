@@ -114,7 +114,7 @@ for prog in "${REQ_PROGS[@]}"; do
                 display_yes
             fi
             ;;
-        sudo | losetup)
+        uuidgen | sudo | losetup)
             DISCARD="$(${prog} --version &> /dev/null)"
             RESPONSE="${?}"
             echo -n "checking for ${prog}... "
