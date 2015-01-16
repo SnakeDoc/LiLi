@@ -114,6 +114,17 @@ for prog in "${REQ_PROGS[@]}"; do
                 display_yes
             fi
             ;;
+        sudo)
+            DISCARD="$(${prog} --version &> /dev/null)"
+            RESPONSE="${?}"
+            echo -n "checking for ${prog}... "
+            if [ "${RESPONSE}" != "0" ]; then
+                display_no
+                exit -1
+            else
+                display_yes
+            fi
+            ;;
         *)
             DISCARD="$(${prog} --version)"
             RESPONSE="${?}"
