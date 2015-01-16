@@ -33,7 +33,8 @@ REQ_PROGS=("bash"
            "makeinfo"
            "bc"
            "wget"
-           "git")
+           "git"
+           "parted")
 
 echo ""
 echo "Verifying host requirements..."
