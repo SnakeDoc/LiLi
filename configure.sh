@@ -34,7 +34,8 @@ REQ_PROGS=("bash"
            "bc"
            "wget"
            "git"
-           "parted")
+           "parted"
+           "losetup")
 
 echo ""
 echo "Verifying host requirements..."
