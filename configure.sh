@@ -35,7 +35,8 @@ REQ_PROGS=("bash"
            "wget"
            "git"
            "parted"
-           "losetup")
+           "losetup"
+           "mkfs.vfat")
 
 echo ""
 echo "Verifying host requirements..."
@@ -86,7 +87,18 @@ for prog in "${REQ_PROGS[@]}"; do
             else
                 display_yes
             fi
-            ;;        
+            ;;
+        mkfs.vfat)
+            DISCARD="$(${prog} --version &> /dev/null)"
+            RESPONSE="${?}"
+            echo -n "checking for ${prog}... "
+            if [ "${RESPONSE}" != "1" ]; then
+                display_no
+                exit -1
+            else
+                display_yes
+            fi
+            ;;
         *)
             DISCARD="$(${prog} --version)"
             RESPONSE="${?}"
