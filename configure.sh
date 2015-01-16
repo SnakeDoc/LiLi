@@ -118,7 +118,7 @@ for prog in "${REQ_PROGS[@]}"; do
             DISCARD="$(${prog} --version &> /dev/null)"
             RESPONSE="${?}"
             echo -n "checking for ${prog}... "
-            if [ "${RESPONSE}" != "0" ]; then
+            if [ "${RESPONSE}" != "0" ] && [ "${RESPONSE}" != "1" ]; then
                 display_no
                 exit -1
             else
