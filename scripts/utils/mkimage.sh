@@ -43,6 +43,8 @@ dd if=/dev/zero of="${DISK}" bs="${IMAGE_SIZE_BS}" count="${DISK_SIZE}"
 sync
 
 # make disklabel
+echo "Creating partition table on ${DISK}"
+losetup "${LOOP}" "${DISK}"
 parted -s "${LOOP}" mklabel msdos
 sync
 
