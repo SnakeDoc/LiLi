@@ -20,7 +20,8 @@ DISK="${IMAGE_DIR}/${IMAGE_NAME}"
 cleanup() {
     echo "Cleaning up..."
     umount "${MNT_TMP}" &>/dev/null || true
-    losetup -a | cut -d ' ' -f 3 | cut -d '(' -f 2 | cut -d ')' -f 1 | xargs losetup -d
+    umount "${LOOP}" &>/dev/null || true
+    losetup -a | cut -d ' ' -f 1 | cut -d ':' -f 1 | xargs losetup -d
     rm -rf "${MNT_TMP}"
     exit
 }
@@ -99,15 +100,16 @@ e2fsck -n "${LOOP}"
 sync
 
 # now mount the image file
-echo -n "Mounting part2"
+echo "Mounting part2"
 mount "${LOOP}" "${MNT_TMP}"
 echo "creating boot directory"
 mkdir -pv "${MNT_TMP}/boot"
-echo -n "Mounting part1 on ${MNT_TMP}/boot"
+echo "Mounting part1 on ${MNT_TMP}/boot"
 PART1_OFFSET="$((2048 * 512))"
 PART1_SIZELIMIT="$((${SYSTEM_SIZE} * 1024 * 1024))"
-losetup -o "${PART1_OFFSET}" --sizelimit "${PART1_SIZELIMIT}" "${LOOP}" "${DISK}"
-mount -t vfat "${LOOP}" "${MNT_TMP}/boot"
+BOOT_PART="${LOOP}"
+losetup -o "${PART1_OFFSET}" --sizelimit "${PART1_SIZELIMIT}" "${BOOT_PART}" "${DISK}"
+mount -t vfat "${BOOT_PART}" "${MNT_TMP}/boot"
 
 # unpack base packages into image
 echo "Unpacking base packages..."
