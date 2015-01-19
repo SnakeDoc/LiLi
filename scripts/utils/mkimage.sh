@@ -10,7 +10,7 @@ set -u
 
 LOOP="$(losetup -f)"
 
-DISK_SIZE="$((${SYSTEM_SIZE} + ${STORAGE_SIZE} + 8))"
+DISK_SIZE="$((${SYSTEM_SIZE} + ${STORAGE_SIZE} + 4))"
 IMAGE_DATE=$(date +%Y%m%d)
 SHORT_VERSION=$(echo ${VERSION} | cut -d " " -f 1)
 IMAGE_NAME="${IMAGE_DATE}-${OS_NAME,,}-${SHORT_VERSION}-${CLFS_ARM_ARCH}-rpi.img"

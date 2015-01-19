@@ -34,7 +34,7 @@ export IMAGE_DIR=${CLFS}/mk_image
 export IMAGE_SIZE_BS="1MB"
 # image partition sizes in MB's
 export SYSTEM_SIZE="128"
-export STORAGE_SIZE="1916"
+export STORAGE_SIZE="1914"
 
 export KERNEL_VERSION="3.12"
 
