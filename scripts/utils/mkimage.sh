@@ -19,6 +19,7 @@ DISK="${IMAGE_DIR}/${IMAGE_NAME}"
 
 cleanup() {
     echo "Cleaning up..."
+    umount "${MNT_TMP}/boot" &>/dev/null || true
     umount "${MNT_TMP}" &>/dev/null || true
     umount "${LOOP}" &>/dev/null || true
     losetup -a | cut -d ' ' -f 1 | cut -d ':' -f 1 | xargs losetup -d
@@ -26,7 +27,7 @@ cleanup() {
     exit
 }
 
-trap cleanup SIGINT
+trap cleanup SIGHUP SIGINT SIGTERM
 
 if [ -e "${IMAGE_DIR}" ]; then
 
