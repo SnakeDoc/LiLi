@@ -100,14 +100,14 @@ e2fsck -n "${LOOP}"
 sync
 
 # now mount the image file
-echo "Mounting part2"
+echo "Mounting part2 on ${MNT_TMP}"
 mount "${LOOP}" "${MNT_TMP}"
 echo "creating boot directory"
 mkdir -pv "${MNT_TMP}/boot"
 echo "Mounting part1 on ${MNT_TMP}/boot"
 PART1_OFFSET="$((2048 * 512))"
 PART1_SIZELIMIT="$((${SYSTEM_SIZE} * 1024 * 1024))"
-BOOT_PART="${LOOP}"
+BOOT_PART="$(losetup -f)"
 losetup -o "${PART1_OFFSET}" --sizelimit "${PART1_SIZELIMIT}" "${BOOT_PART}" "${DISK}"
 mount -t vfat "${BOOT_PART}" "${MNT_TMP}/boot"
 
