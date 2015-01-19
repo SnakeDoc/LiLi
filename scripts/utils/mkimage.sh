@@ -8,6 +8,7 @@ set -u
 . settings/config
 . scripts/utils/utils.sh
 
+MNT_TMP="${IMAGE_DIR}/rootfs"
 LOOP="$(losetup -f)"
 
 DISK_SIZE="$((${SYSTEM_SIZE} + ${STORAGE_SIZE} + 4))"
@@ -15,6 +16,16 @@ IMAGE_DATE=$(date +%Y%m%d)
 SHORT_VERSION=$(echo ${VERSION} | cut -d " " -f 1)
 IMAGE_NAME="${IMAGE_DATE}-${OS_NAME,,}-${SHORT_VERSION}-${CLFS_ARM_ARCH}-rpi.img"
 DISK="${IMAGE_DIR}/${IMAGE_NAME}"
+
+cleanup() {
+    echo "Cleaning up..."
+    umount "${MNT_TMP}" &>/dev/null || true
+    losetup -a | cut -d ' ' -f 3 | cut -d '(' -f 2 | cut -d ')' -f 1 | xargs losetup -d
+    rm -rf "${MNT_TMP}"
+    exit
+}
+
+trap cleanup SIGINT
 
 if [ -e "${IMAGE_DIR}" ]; then
 
@@ -28,7 +39,6 @@ echo "Creating Image Directory..."
 mkdir -pv "${IMAGE_DIR}"
 
 echo "Creating base directory structure..."
-MNT_TMP="${IMAGE_DIR}/rootfs"
 mkdir -pv "${MNT_TMP}"
 check_status
 
@@ -110,14 +120,10 @@ echo -n "Unmounting image..."
 umount "${MNT_TMP}/boot"
 umount "${MNT_TMP}"
 
-# cleanup loopbacks
-echo -n "Cleaning up loopback devices..."
-losetup --detach-all
-check_status
-
 ## Completed ##
 echo -n "Image created:"
 show_status "${OK}"
 
-exit 0
+# cleanup workspace
+cleanup
 
