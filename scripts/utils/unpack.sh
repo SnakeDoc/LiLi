@@ -9,7 +9,7 @@ set -u
 . settings/config
 . scripts/utils/utils.sh
 
-if [ -n "${1}" ]; then
+if [ -n "${1-}" ]; then
     FAKEROOT="${1}"
 else
     if [ -e "${FAKEROOT}" ]; then
