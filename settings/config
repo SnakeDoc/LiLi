@@ -36,7 +36,7 @@ export IMAGE_SIZE_BS="1M"
 export SYSTEM_SIZE="128"
 export STORAGE_SIZE="1918"
 
-export KERNEL_VERSION="3.12"
+export KERNEL_VERSION="3.18"
 
 export CLFS_FLOAT="hard"
 export CLFS_FPU="vfp"
