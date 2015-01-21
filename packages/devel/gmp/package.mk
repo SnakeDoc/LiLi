@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="gmp"
-PKG_VERSION="5.1.3"
+PKG_VERSION="6.0.0a"
 PKG_URL_TYPE="http"
 PKG_URL="http://ftp.gnu.org/gnu/gmp/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS=""
