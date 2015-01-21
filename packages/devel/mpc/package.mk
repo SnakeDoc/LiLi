@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="mpc"
-PKG_VERSION="1.0.1"
+PKG_VERSION="1.0.2"
 PKG_URL_TYPE="http"
 PKG_URL="http://www.multiprecision.org/mpc/download/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS=""
