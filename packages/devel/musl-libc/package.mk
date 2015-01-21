@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="musl"
-PKG_VERSION="0.9.15"
+PKG_VERSION="1.1.6"
 PKG_URL_TYPE="http"
 PKG_URL="http://www.musl-libc.org/releases/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS=""
