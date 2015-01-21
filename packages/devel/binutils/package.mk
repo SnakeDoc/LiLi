@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="binutils"
-PKG_VERSION="2.24"
+PKG_VERSION="2.25"
 PKG_URL_TYPE="http"
 PKG_URL="http://ftp.gnu.org/gnu/binutils/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS=""
