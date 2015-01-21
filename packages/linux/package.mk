@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="linux"
-PKG_VERSION="3.12"
+PKG_VERSION="3.18"
 PKG_URL_TYPE="git"
 PKG_URL="https://github.com/raspberrypi/linux.git"
 PKG_DEPENDS=""
