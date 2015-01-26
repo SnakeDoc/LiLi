@@ -11,7 +11,7 @@ pkg_dir="$(locate_package 'linux')"
 
 cd "${CLFS_SOURCES}/"
 if [ ! -d "${CLFS_SOURCES}/${PKG_NAME}" ]; then
-    git clone --depth 1 "${PKG_URL}" --progress
+    git clone "${PKG_URL}" --branch "rpi-${KERNEL_VERSION}.y" --single-branch --progress
 fi
 
 cd "${CLFS_SOURCES}/${PKG_NAME}/"
