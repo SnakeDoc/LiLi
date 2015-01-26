@@ -31,7 +31,7 @@ git reset --hard "origin/rpi-${KERNEL_VERSION}.y"
 # make sure source is clean
 make mrproper
 
-ARCH="${CLFS_ARCH}" make bcmrpi_cutdown_defconfig
+ARCH="${CLFS_ARCH}" make bcmrpi_defconfig
 
 ARCH="${CLFS_ARCH}" CROSS_COMPILE="${CLFS_ENV_PATH}/${CLFS_TARGET}-" make oldconfig
 
