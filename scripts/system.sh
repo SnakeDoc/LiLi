@@ -79,24 +79,24 @@ if [ "${VERIFY}" != "$(basename ${CC})" ]; then
     cp -R "${CLFS_SOURCES}/LiLiCompiler/target/cross-tools" "${CLFS}/"
     sync
 
-    # busybox and musl-libc seem to have some compatibility issues.
-    # busybox makes excessive use of linux kernel headers, which
-    # have a tendency to clash with userspace.
-    # patch the kernel headers used during the build so that we can
-    # work around most of this ugliness.
-    OLD_PWD="$(pwd)"
-    cd "${CLFS_TOOLS}/${CLFS_TARGET}/"
-    patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-1.patch"
-    patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-2.patch"
-    patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-3.patch"
-    patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-4.patch"
-    patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-5.patch"
-    cd "${OLD_PWD}"
-
 fi
 ######################################
 #         END CROSS COMPILER         #
 ######################################
+
+# busybox and musl-libc seem to have some compatibility issues.
+# busybox makes excessive use of linux kernel headers, which
+# have a tendency to clash with userspace.
+# patch the kernel headers used during the build so that we can
+# work around most of this ugliness.
+OLD_PWD="$(pwd)"
+cd "${CLFS_TOOLS}/${CLFS_TARGET}/"
+patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-1.patch" || true
+patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-2.patch" || true
+patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-3.patch" || true
+patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-4.patch" || true
+patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-5.patch" || true
+cd "${OLD_PWD}"
 
 ######################################
 #     BUILD BASE SYSTEM PACKAGES     #
