@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="dropbear"
-PKG_VERSION="2013.62"
+PKG_VERSION="2014.66"
 PKG_URL_TYPE="https"
 PKG_URL="https://matt.ucc.asn.au/dropbear/releases/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS=""
