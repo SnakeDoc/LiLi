@@ -15,9 +15,9 @@
 ################################################################################
 
 PKG_NAME="e2fsprogs"
-PKG_VERSION="1.42.9"
+PKG_VERSION="1.42.12"
 PKG_URL_TYPE="https"
-PKG_URL="https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.42.9/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_URL="https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS=""
 PKG_SECTION="system"
 

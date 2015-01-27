@@ -31,7 +31,7 @@ tar -zxvf "${PKG_NAME}-${PKG_VERSION}.tar.gz"
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
 # patch source
-patch -Np1 -i "${SOURCES}/${PKG_NAME}-${PKG_VERSION}.patch"
+#patch -Np1 -i "${SOURCES}/${PKG_NAME}-${PKG_VERSION}.patch"
 
 # setup build
 mkdir -v "${CLFS_SOURCES}/${PKG_NAME}-build"
