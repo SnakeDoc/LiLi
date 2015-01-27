@@ -17,7 +17,7 @@ ln -svf ../proc/mounts "${FAKEROOT}/etc/mtab"
 ########## passwd ##########
 echo "Installing /etc/passwd"
 cat > "${FAKEROOT}/etc/passwd" << "EOF"
-root::0:0:root:/root:/bin/ash
+root::0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/bin/false
 daemon:x:2:6:daemon:/sbin:/bin/false
 adm:x:3:16:adm:/var/adm:/bin/false

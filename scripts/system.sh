@@ -23,7 +23,8 @@ build_base_packages() {
               "wireless_tools.sh"
               "e2fsprogs.sh"
               "musl-libc.sh"
-              "zlib.sh")
+              "zlib.sh"
+              "bash.sh")
 
     for package in "${packages[@]}"; do
         reset_fakeroot
