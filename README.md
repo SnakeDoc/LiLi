@@ -12,18 +12,19 @@ A minimalist and performant GNU/Linux operating system.
 
         Base System Packages:
                 filesystem hierarchy standard layout
-                musl-libc-0.9.15
-                linux kernel 3.12.21
-                busybox-1.22.0
+                musl-libc-1.1.6
+                linux kernel 3.18.x
+                busybox-1.23.0
                 iana-etc-2.30
                 zlib-1.2.8
-                dropbear-2013.62
+                dropbear-2014.66
                 wireless_tools.29
-                e2fsprogs-1.42.9
+                e2fsprogs-1.42.12
+                bash-4.3.30
                 SysV-style init
                 Broadcom GPU firmware (VideoCore IV)
                 Broadcom bootloader (BCM2835)
 
 
-Last Updated: 2014-12-18
+Last Updated: 2015-1-27
 
