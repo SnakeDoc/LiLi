@@ -9,6 +9,12 @@ SYSTEM_LD="$(which ld)"
 SYSTEM_RANLIB="$(which ranlib)"
 SYSTEM_READELF="$(which readelf)"
 SYSTEM_STRIP="$(which strip)"
+SYSTEM_M4=""
+SYSTEM_FLEX=""
+SYSTEM_LEX=""
+SYSTEM_FLEXXX=""
+SYSTEM_BISON=""
+SYSTEM_YACC=""
 
 # store toolchain env vars
 export TOOLCHAIN_CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc"
@@ -19,6 +25,12 @@ export TOOLCHAIN_LD="${CLFS_ENV_PATH}/${CLFS_TARGET}-ld"
 export TOOLCHAIN_RANLIB="${CLFS_ENV_PATH}/${CLFS_TARGET}-ranlib"
 export TOOLCHAIN_READELF="${CLFS_ENV_PATH}/${CLFS_TARGET}-readelf"
 export TOOLCHAIN_STRIP="${CLFS_ENV_PATH}/${CLFS_TARGET}-strip"
+export TOOLCHAIN_M4="${CLFS_ENV_PATH}/m4"
+export TOOLCHAIN_FLEX="${CLFS_ENV_PATH}/flex"
+export TOOLCHAIN_LEX="${CLFS_ENV_PATH}/lex"
+export TOOLCHAIN_FLEXXX="${CLFS_ENV_PATH}/flex++"
+export TOOLCHAIN_BISON="${CLFS_ENV_PATH}/bison"
+export TOOLCHAIN_YACC="${CLFS_ENV_PATH}/yacc"
 
 # unset system env vars
 unset CC
@@ -29,6 +41,12 @@ unset LD
 unset RANLIB
 unset READELF
 unset STRIP
+unset M4
+unset FLEX
+unset LEX
+unset FLEXXX
+unset BISON
+unset YACC
 
 use_system_env() {
     unset CC
@@ -39,6 +57,12 @@ use_system_env() {
     unset RANLIB
     unset READELF
     unset STRIP
+    unset M4
+    unset FLEX
+    unset LEX
+    unset FLEXXX
+    unset BISON
+    unset YACC
     export CC="${SYSTEM_CC}"
     export CXX="${SYSTEM_CXX}"
     export AR="${SYSTEM_AR}"
@@ -47,6 +71,12 @@ use_system_env() {
     export RANLIB="${SYSTEM_RANLIB}"
     export READELF="${SYSTEM_READELF}"
     export STRIP="${SYSTEM_STRIP}"
+    export M4="${SYSTEM_M4}"
+    export FLEX="${SYSTEM_FLEX}"
+    export LEX="${SYSTEM_LEX}"
+    export FLEXXX="${SYSTEM_FLEXXX}"
+    export BISON="${SYSTEM_BISON}"
+    export YACC="${SYSTEM_YACC}"
 }
 
 use_toolchain_env() {
@@ -58,6 +88,12 @@ use_toolchain_env() {
     unset RANLIB
     unset READELF
     unset STRIP
+    unset M4
+    unset FLEX
+    unset LEX
+    unset FLEXXX
+    unset BISON
+    unset YACC
     export CC="${TOOLCHAIN_CC}"
     export CXX="${TOOLCHAIN_CXX}"
     export AR="${TOOLCHAIN_AR}"
@@ -66,5 +102,11 @@ use_toolchain_env() {
     export RANLIB="${TOOLCHAIN_RANLIB}"
     export READELF="${TOOLCHAIN_READELF}"
     export STRIP="${TOOLCHAIN_STRIP}"
+    export M4="${TOOLCHAIN_M4}"
+    export FLEX="${TOOLCHAIN_FLEX}"
+    export LEX="${TOOLCHAIN_LEX}"
+    export FLEXXX="${TOOLCHAIN_FLEXXX}"
+    export BISON="${TOOLCHAIN_BISON}"
+    export YACC="${TOOLCHAIN_YACC}"
 }
 
