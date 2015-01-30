@@ -1,21 +1,21 @@
 diff -Naur a/build-aux/config.sub b/build-aux/config.sub
---- a/build-aux/config.sub	2015-01-28 20:15:24.163554066 -0800
-+++ b/build-aux/config.sub	2015-01-28 20:13:55.291754774 -0800
-@@ -123,7 +123,7 @@
- maybe_os=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\2/'`
+--- a/build-aux/config.sub	2014-12-15 14:54:31.144052083 -0800
++++ b/build-aux/config.sub	2015-01-29 21:33:06.879969676 -0800
+@@ -124,7 +124,7 @@
  case $maybe_os in
    nto-qnx* | linux-gnu* | linux-android* | linux-dietlibc | linux-newlib* | \
--  linux-musl* | linux-uclibc* | uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | \
-+  linux-uclibc* | uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | \
-   knetbsd*-gnu* | netbsd*-gnu* | \
+   linux-uclibc* | uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | \
+-  knetbsd*-gnu* | netbsd*-gnu* | \
++  knetbsd*-gnu* | linux-musl* | netbsd*-gnu* | \
    kopensolaris*-gnu* | \
    storm-chaos* | os2-emx* | rtmk-nova*)
+     os=-$maybe_os
 @@ -1360,7 +1360,7 @@
  	      | -chorusos* | -chorusrdb* | -cegcc* \
  	      | -cygwin* | -msys* | -pe* | -psos* | -moss* | -proelf* | -rtems* \
  	      | -mingw32* | -linux-gnu* | -linux-android* \
--	      | -linux-newlib* | -linux-musl* | -linux-uclibc* \
-+	      | -linux-newlib* | -linux-uclibc* \
+-	      | -linux-newlib* | -linux-uclibc* \
++	      | -linux-newlib* | -linux-musl* | -linux-uclibc* \
  	      | -uxpv* | -beos* | -mpeix* | -udk* \
  	      | -interix* | -uwin* | -mks* | -rhapsody* | -darwin* | -opened* \
  	      | -openstep* | -oskit* | -conix* | -pw32* | -nonstopux* \

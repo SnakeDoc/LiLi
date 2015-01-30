@@ -23,6 +23,5 @@ PKG_SECTION="network"
 
 PKG_CONFIGURE_OPTS=(--build="${CLFS_HOST}"
                     --host="${CLFS_TARGET}"
-                    --prefix=/
-                    --datarootdir=/usr/share)
+                    --prefix=/)
 

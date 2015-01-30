@@ -21,9 +21,9 @@ cd "${CLFS_SOURCES}/"
 tar -xjvf "${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl.patch"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" ./configure "${PKG_CONFIGURE_OPTS[@]}"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" make
-make install prefix="${FAKEROOT}"
+./configure "${PKG_CONFIGURE_OPTS[@]}"
+make
+make install DESTDIR="${FAKEROOT}"
 cd "${CLFS_SOURCES}/"
 rm -rf "${PKG_NAME}-${PKG_VERSION}"
 
@@ -43,9 +43,13 @@ cd "${CLFS_SOURCES}/"
 tar -xjvf "${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl.patch"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" ./configure "${PKG_CONFIGURE_OPTS[@]}"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" make
-make install prefix="${FAKEROOT}"
+
+LIBMNL_CFLAGS="-I${FAKEROOT}/include" \
+LIBMNL_LIBS="-L${FAKEROOT}/lib" \
+./configure "${PKG_CONFIGURE_OPTS[@]}"
+
+make
+make install DESTDIR="${FAKEROOT}"
 cd "${CLFS_SOURCES}/"
 rm -rf "${PKG_NAME}-${PKG_VERSION}"
 
@@ -65,9 +69,18 @@ cd "${CLFS_SOURCES}/"
 tar -xjvf "${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl.patch"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" ./configure "${PKG_CONFIGURE_OPTS[@]}"
-CC="${CLFS_ENV_PATH}/${CLFS_TARGET}-gcc" make
-make install prefix="${FAKEROOT}"
+
+CFLAGS="-I${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/include" \
+CPPFLAGS="-I${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/include" \
+YACC="${CLFS_ENV_PATH}/bison"
+LIBMNL_CFLAGS="-I${FAKEROOT}/include" \
+LIBMNL_LIBS="-L${FAKEROOT}/lib" \
+LIBNFTNL_CFLAGS="-I${FAKEROOT}/include" \
+LIBNFTNL_LIBS="-L${FAKEROOT}/lib" \
+./configure "${PKG_CONFIGURE_OPTS[@]}"
+
+make
+make install DESTDIR="${FAKEROOT}"
 
 # cleanup
 cd "${CLFS_SOURCES}/"
