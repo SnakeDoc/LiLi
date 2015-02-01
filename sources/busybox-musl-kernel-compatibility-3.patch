@@ -1,18 +1,6 @@
-From 3cd5b95ad2e9ca7d39e2dffe79f9198a36a0e68e Mon Sep 17 00:00:00 2001
-From: rofl0r <retnyg@gmx.net>
-Date: Wed, 22 Jan 2014 00:48:28 +0100
-Subject: [PATCH] libc-compat.h: fix some issues arising from in6.h
-
-namely redefinition of some structs provided by netinet/in.h.
----
- generic/include/linux/libc-compat.h | 23 +++++++----------------
- 1 file changed, 7 insertions(+), 16 deletions(-)
-
-diff --git a/include/linux/libc-compat.h b/include/linux/libc-compat.h
-index 46ba53f..1ce7a58 100644
---- a/include/linux/libc-compat.h
-+++ b/include/linux/libc-compat.h
-@@ -48,35 +48,26 @@
+--- a/include/linux/libc-compat.h	2015-01-31 15:01:22.000000000 -0800
++++ b/include/linux/libc-compat.h	2015-01-31 23:25:00.045304657 -0800
+@@ -48,36 +48,27 @@
  #ifndef _LIBC_COMPAT_H
  #define _LIBC_COMPAT_H
  
@@ -39,6 +27,7 @@ index 46ba53f..1ce7a58 100644
  #define __UAPI_DEF_SOCKADDR_IN6		0
  #define __UAPI_DEF_IPV6_MREQ		0
  #define __UAPI_DEF_IPPROTO_V6		0
+ #define __UAPI_DEF_IPV6_OPTIONS		0
  
 -#else
 +#else /* defined(_NETINET_IN_H) */
@@ -53,7 +42,7 @@ index 46ba53f..1ce7a58 100644
   * coordinate. */
  #define __UAPI_DEF_IN6_ADDR_ALT		1
  #define __UAPI_DEF_SOCKADDR_IN6		1
-@@ -89,7 +80,7 @@
+@@ -97,7 +88,7 @@
  /* If we did not see any headers from any supported C libraries,
   * or we are being included in the kernel, then define everything
   * that we need. */
@@ -62,9 +51,9 @@ index 46ba53f..1ce7a58 100644
  
  /* Definitions for in6.h */
  #define __UAPI_DEF_IN6_ADDR		1
-@@ -98,6 +89,6 @@
- #define __UAPI_DEF_IPV6_MREQ		1
- #define __UAPI_DEF_IPPROTO_V6		1
+@@ -110,6 +101,6 @@
+ /* Definitions for xattr.h */
+ #define __UAPI_DEF_XATTR		1
  
 -#endif /* __GLIBC__ */
 +#endif /* __KERNEL__ */
