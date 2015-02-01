@@ -24,7 +24,8 @@ build_base_packages() {
               "e2fsprogs.sh"
               "musl-libc.sh"
               "zlib.sh"
-              "bash.sh")
+              "bash.sh"
+              "iptables.sh")
 
     for package in "${packages[@]}"; do
         reset_fakeroot
