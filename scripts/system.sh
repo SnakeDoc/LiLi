@@ -94,7 +94,6 @@ fi
 OLD_PWD="$(pwd)"
 cd "${CLFS_TOOLS}/${CLFS_TARGET}/"
 patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-1.patch" || true
-patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-2.patch" || true
 patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-3.patch" || true
 patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-4.patch" || true
 patch -Np1 -i "${SOURCES}/busybox-musl-kernel-compatibility-5.patch" || true
