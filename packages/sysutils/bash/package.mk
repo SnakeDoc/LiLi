@@ -30,5 +30,8 @@ PKG_CONFIGURE_OPTS=(--build="${CLFS_HOST}"
                     --enable-cond-command
                     --enable-history
                     --enable-select
+                    --enable-job-control
+                    --without-bash-malloc
+                    --disable-nls
                     --prefix=/)
 
