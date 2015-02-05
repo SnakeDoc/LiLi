@@ -93,7 +93,7 @@ echo "Installing /etc/issue"
 clear > "${FAKEROOT}/etc/issue"
 # note: don't use quotes on EOF to allow
 #    variable expansion
-cat >> "${FAKEROOT}/etc/issue" << EOF
+cat >> "${FAKEROOT}/etc/issue" << "EOF"
  ___          ___
  \  \        /  / 
   \  \      /  /                                      _
@@ -103,6 +103,8 @@ cat >> "${FAKEROOT}/etc/issue" << EOF
       \____/   \__,_||_| |_| \___/ |_| |_| |_| \__,_||_| \__, |
                                                          |___/ 
 
+EOF
+cat >> "${FAKEROOT}/etc/issue" << EOF
 ${OS_NAME} release ${VERSION}
 
 Kernel \r on an \m
