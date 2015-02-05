@@ -2,7 +2,7 @@
 
 all: release
 
-release: clean-all image
+release: image
 	./scripts/utils/archive.sh
 
 system: clean-system
