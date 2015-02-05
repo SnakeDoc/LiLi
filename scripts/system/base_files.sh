@@ -94,7 +94,16 @@ clear > "${FAKEROOT}/etc/issue"
 # note: don't use quotes on EOF to allow
 #    variable expansion
 cat >> "${FAKEROOT}/etc/issue" << EOF
-"${OS_NAME}" release "${VERSION}"
+ ___          ___
+ \  \        /  / 
+  \  \      /  /                                      _
+   \  \    /  / __ _  _ __    ___   _ __ ___    __ _ | | _   _ 
+    \  \  /  / / _` || '_ \  / _ \ | '_ ` _ \  / _` || || | | |
+     \  \/  / | (_| || | | || (_) || | | | | || (_| || || |_| |
+      \____/   \__,_||_| |_| \___/ |_| |_| |_| \__,_||_| \__, |
+                                                         |___/ 
+
+${OS_NAME} release ${VERSION}
 
 Kernel \r on an \m
 
@@ -262,6 +271,7 @@ echo "Installing /etc/shells"
 cat > "${FAKEROOT}/etc/shells" << "EOF"
 /bin/sh
 /bin/ash
+/bin/bash
 EOF
 
 ########## release ##########
@@ -269,7 +279,7 @@ echo "Installing /etc/${OS_NAME,,}-release"
 # note: don't use quotes around EOF to
 #    allow variable expansion
 cat > "${FAKEROOT}/etc/${OS_NAME,,}-release" << EOF
-"${OS_NAME}" release "${VERSION}"
+${OS_NAME} release ${VERSION}
 EOF
 
 ########## hostname ##########
