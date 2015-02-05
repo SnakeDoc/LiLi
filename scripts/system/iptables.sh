@@ -198,6 +198,7 @@ esac
 
 # End /etc/rc.d/init.d/iptables
 EOF
+chmod +x "${FAKEROOT}/etc/rc.d/init.d/iptables"
 
 ln -svf ../init.d/iptables "${FAKEROOT}/etc/rc.d/start/S19iptables"
 ln -svf ../init.d/iptables "${FAKEROOT}/etc/rc.d/stop/K19iptables"
