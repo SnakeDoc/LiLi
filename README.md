@@ -3,6 +3,8 @@ LiLi GNU/Linux System
 
 A minimalist and performant GNU/Linux operating system.
 
+[![Build Status](http://build.vanomaly.net/buildStatus/icon?job=LiLi)](http://build.vanomaly.net/job/LiLi/)
+
  - Target(s): Raspberry Pi
  - Target Arch: ARM (armv6zk)
  - Target FPU: Hard Float (vfp)
@@ -21,10 +23,11 @@ A minimalist and performant GNU/Linux operating system.
                 wireless_tools.29
                 e2fsprogs-1.42.12
                 bash-4.3.30
+                iptables-1.4.21
                 SysV-style init
                 Broadcom GPU firmware (VideoCore IV)
                 Broadcom bootloader (BCM2835)
 
 
-Last Updated: 2015-1-27
+Last Updated: 2015-02-04
 
