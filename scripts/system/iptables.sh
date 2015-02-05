@@ -26,9 +26,10 @@ tar -xjvf "${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
-patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl.patch"
+patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl-1.patch"
+patch -Np1 -i "${SOURCES}/${PKG_NAME}-musl-2.patch"
 
-KERNEL_DIR="${CLFS_TOOLS}/${CLFS_TARGET}/include" ./configure "${PKG_CONFIGURE_OPTS[@]}"
+./configure "${PKG_CONFIGURE_OPTS[@]}"
   
 make
 
@@ -38,12 +39,18 @@ make install DESTDIR="${FAKEROOT}"
 ln -svf ../../sbin/xtables-multi "${FAKEROOT}/usr/bin/iptables-xml"
 for file in ip4tc ip6tc ipq iptc xtables
 do
-   mv -v "${FAKEROOT}/usr/lib/lib${file}.so.*" "${FAKEROOT}/lib"
+   mv -v "${FAKEROOT}"/usr/lib/lib${file}.so.* "${FAKEROOT}/lib"
    ln -svf "../../lib/$(readlink ${FAKEROOT}/usr/lib/lib${file}.so)" \
       "${FAKEROOT}/usr/lib/lib${file}.so"
 done
+# clean files we don't want like static binaries
+rm -f "${FAKEROOT}"/usr/lib/*.la
+rm -rf "${FAKEROOT}/usr/lib/pkgconfig"
 
 # install init script
+mkdir -pv "${FAKEROOT}/etc/rc.d/start"
+mkdir -pv "${FAKEROOT}/etc/rc.d/stop"
+mkdir -pv "${FAKEROOT}/etc/rc.d/init.d"
 cat > "${FAKEROOT}/etc/rc.d/init.d/iptables" << "EOF"
 #!/bin/sh
 #

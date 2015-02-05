@@ -26,4 +26,5 @@ PKG_CONFIGURE_OPTS=(--build="${CLFS_HOST}"
                     --prefix=/usr
                     --sbin=/sbin
                     --with-xtlibdir=/lib/xtables
-                    --enable-libipq)
+                    --enable-libipq
+                    --with-ksource="${CLFS_TOOLS}/${CLFS_TARGET}")
