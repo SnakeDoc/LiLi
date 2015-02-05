@@ -45,6 +45,10 @@ make DESTDIR="${FAKEROOT}" install
 
 make DESTDIR="${FAKEROOT}" install-libs
 
+# remove static libs and pkgconfig dir
+rm -f "${FAKEROOT}"/usr/lib/*.la
+rm -rf "${FAKEROOT}/usr/lib/pkgconfig"
+
 # cleanup
 cd "${CLFS_SOURCES}/"
 rm -rf "${PKG_NAME}-${PKG_VERSION}"
