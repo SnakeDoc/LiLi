@@ -33,6 +33,7 @@ make DESTDIR="${FAKEROOT}" install-bootscripts
 install -dv "${FAKEROOT}/etc/init.d"
 
 ln -svf ../rc.d/startup "${FAKEROOT}/etc/init.d/rcS"
+mkdir -pv "${FAKEROOT}/sbin"
 ln -svf halt "${FAKEROOT}/sbin/shutdown"
 ln -svf reboot "${FAKEROOT}/sbin/restart"
 
