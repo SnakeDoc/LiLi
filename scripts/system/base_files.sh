@@ -91,19 +91,21 @@ EOF
 ########## issue file ##########
 echo "Installing /etc/issue"
 clear > "${FAKEROOT}/etc/issue"
-# note: don't use quotes on EOF to allow
-#    variable expansion
+# logo looks messy, but the double back-slashes
+#    are necessary to display properly
 cat >> "${FAKEROOT}/etc/issue" << "EOF"
  ___          ___
- \  \        /  / 
-  \  \      /  /                                      _
-   \  \    /  / __ _  _ __    ___   _ __ ___    __ _ | | _   _ 
-    \  \  /  / / _` || '_ \  / _ \ | '_ ` _ \  / _` || || | | |
-     \  \/  / | (_| || | | || (_) || | | | | || (_| || || |_| |
-      \____/   \__,_||_| |_| \___/ |_| |_| |_| \__,_||_| \__, |
+ \\  \        /  / 
+  \\  \      /  /                                      _
+   \\  \    /  / __ _  _ __    ___   _ __ ___    __ _ | | _   _ 
+    \\  \  /  / / _` || '_ \\  / _ \\ | '_ ` _ \\  / _` || || | | |
+     \\  \/  / | (_| || | | || (_) || | | | | || (_| || || |_| |
+      \\____/   \\__,_||_| |_| \\___/ |_| |_| |_| \\__,_||_| \\__, |
                                                          |___/ 
 
 EOF
+# note: dno't use quotes on EOF to allow
+#    variable expansion
 cat >> "${FAKEROOT}/etc/issue" << EOF
 ${OS_NAME} release ${VERSION}
 
