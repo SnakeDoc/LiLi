@@ -33,8 +33,8 @@ make DESTDIR="${FAKEROOT}" install-bootscripts
 install -dv "${FAKEROOT}/etc/init.d"
 
 ln -svf ../rc.d/startup "${FAKEROOT}/etc/init.d/rcS"
-ln -svf /sbin/halt "${FAKEROOT}/sbin/shutdown"
-ln -svf /sbin/reboot "${FAKEROOT}/sbin/restart"
+ln -svf halt "${FAKEROOT}/sbin/shutdown"
+ln -svf reboot "${FAKEROOT}/sbin/restart"
 
 # cleanup
 cd "${CLFS_SOURCES}/"
