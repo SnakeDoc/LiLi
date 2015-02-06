@@ -43,8 +43,8 @@ cp -vP "${TEMP_INSTALL}"/lib/*.so* "${FAKEROOT}/lib/"
 sync
 
 # make some sym links for compatibility
-ln -svf "ld-musl-${ARCH}.so.1" "${FAKEROOT}/lib/ld-musl-${ARCH}.so"
-ln -svf ../lib/ld-musl-"${ARCH}.so "${FAKEROOT}/bin/ldd"
+ln -svf "ld-musl-${CLFS_ARCH}hf.so.1" "${FAKEROOT}/lib/ld-musl-${CLFS_ARCH}hf.so"
+ln -svf ../lib/ld-musl-"${CLFS_ARCH}hf.so "${FAKEROOT}/bin/ldd"
 
 # cleanup
 cd "${CLFS_SOURCES}/"
