@@ -268,6 +268,7 @@ tty6::respawn:/sbin/getty 38400 tty6
 
 ::shutdown:/etc/rc.d/shutdown
 ::ctrlaltdel:/sbin/reboot
+::restart:/sbin/init
 EOF
 
 ########## shells ##########
