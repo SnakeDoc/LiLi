@@ -1,0 +1,9 @@
+diff -Naur a/clfs/rc.d/shutdown b/clfs/rc.d/shutdown
+--- a/clfs/rc.d/shutdown	2013-11-12 10:29:28.000000000 -0800
++++ b/clfs/rc.d/shutdown	2015-02-05 23:21:27.381388805 -0800
+@@ -38,3 +38,5 @@
+ echo -n "Unmounting all filesystems: "
+ umount -a -r
+ 
++halt
++

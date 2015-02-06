@@ -26,6 +26,8 @@ tar -zxvf "${PKG_NAME}.tar.gz"
 
 cd "${CLFS_SOURCES}/${PKG_NAME}/"
 
+patch -Np1 -i "${SOURCES}/shutdown.patch"
+
 make DESTDIR="${FAKEROOT}" install-bootscripts
 
 install -dv "${FAKEROOT}/etc/init.d"
