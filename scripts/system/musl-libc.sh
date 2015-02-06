@@ -39,8 +39,12 @@ DESTDIR="${TEMP_INSTALL}" make install
 
 # let's now copy over the files we need into the fakeroot
 mkdir -pv "${FAKEROOT}/lib"
-cp -vP "${TEMP_INSTALL}/lib/"*.so* "${FAKEROOT}/lib/"
+cp -vP "${TEMP_INSTALL}"/lib/*.so* "${FAKEROOT}/lib/"
 sync
+
+# make some sym links for compatibility
+ln -svf "ld-musl-${ARCH}.so.1" "${FAKEROOT}/lib/ld-musl-${ARCH}.so"
+ln -svf ../lib/ld-musl-"${ARCH}.so "${FAKEROOT}/bin/ldd"
 
 # cleanup
 cd "${CLFS_SOURCES}/"
