@@ -44,7 +44,7 @@ sync
 
 # make some sym links for compatibility
 ln -svf "ld-musl-${CLFS_ARCH}hf.so.1" "${FAKEROOT}/lib/ld-musl-${CLFS_ARCH}hf.so"
-ln -svf ../lib/ld-musl-"${CLFS_ARCH}hf.so "${FAKEROOT}/bin/ldd"
+ln -svf ../lib/ld-musl-"${CLFS_ARCH}"hf.so "${FAKEROOT}/bin/ldd"
 
 # cleanup
 cd "${CLFS_SOURCES}/"
