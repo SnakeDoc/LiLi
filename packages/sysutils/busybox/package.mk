@@ -15,7 +15,7 @@
 ################################################################################
 
 PKG_NAME="busybox"
-PKG_VERSION="1.23.0"
+PKG_VERSION="1.23.1"
 PKG_URL_TYPE="http"
 PKG_URL="http://www.busybox.net/downloads/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS=""
