@@ -63,7 +63,7 @@ chmod +x "${FAKEROOT}/etc/rc.d/init.d/network"
 ln -svf ../init.d/network "${FAKEROOT}/etc/rc.d/start/S01network"
 ln -svf ../init.d/network "${FAKEROOT}/etc/rc.d/stop/K999network"
 
-mkdir -pv "${FAKEROOT}/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d"
+mkdir -pv "${FAKEROOT}/etc/network/"if-{post-{up,down},pre-{up,down},up,down}.d
 mkdir -pv "${FAKEROOT}/usr/share/udhcpc"
 
 cat > "${FAKEROOT}/etc/network/interfaces" << "EOF"
