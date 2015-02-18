@@ -22,7 +22,7 @@ fi
 
 # now get started
 cd "${CLFS_SOURCES}/"
-tar -xvJf "${PKG_NAME}-${PKG_VERSION}.tar.xf"
+tar -xvJf "${PKG_NAME}-${PKG_VERSION}.tar.xz"
 
 cd "${CLFS_SOURCES}/${PKG_NAME}-${PKG_VERSION}/"
 
