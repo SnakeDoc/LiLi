@@ -22,5 +22,7 @@ PKG_DEPENDS=""
 PKG_SECTION="system"
 
 PKG_CONFIGURE_OPTS=(--prefix=/usr
+                    --build="${CLFS_HOST}"
+                    --host="${CLFS_TARGET}"
                     --enable-install-program=hostname
                     --libexecdir=/usr/lib)
