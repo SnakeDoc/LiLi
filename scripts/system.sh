@@ -25,7 +25,8 @@ build_base_packages() {
               "musl-libc.sh"
               "zlib.sh"
               "bash.sh"
-              "iptables.sh")
+              "iptables.sh"
+              "coreutils.sh")
 
     for package in "${packages[@]}"; do
         reset_fakeroot
