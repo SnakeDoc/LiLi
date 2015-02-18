@@ -32,9 +32,10 @@ FORCE_UNSAFE_CONFIGURE=1 ./configure "${PKG_CONFIGURE_OPTS[@]}"
 
 make
 
-make NON_ROOT_USERNAME=nobody check-root
-
-make RUN_EXPENSIVE=yes -k check || true
+# There are problems running these tests on a
+# cross-compile toolchain
+#make NON_ROOT_USERNAME=nobody check-root
+#make RUN_EXPENSIVE=yes -k check || true
 
 # Install to rootfs
 DESTDIR="${FAKEROOT}" make install
