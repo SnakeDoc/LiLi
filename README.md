@@ -17,6 +17,7 @@ A minimalist and performant GNU/Linux operating system.
                 musl-libc-1.1.6
                 linux kernel 3.18.x
                 busybox-1.23.0
+                coreutils-8.23
                 iana-etc-2.30
                 zlib-1.2.8
                 dropbear-2014.66
@@ -29,5 +30,5 @@ A minimalist and performant GNU/Linux operating system.
                 Broadcom bootloader (BCM2835)
 
 
-Last Updated: 2015-02-04
+Last Updated: 2015-02-19
 
