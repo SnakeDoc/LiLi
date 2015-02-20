@@ -11,21 +11,21 @@ set -u
 . scripts/utils/fakeroot.sh
 
 build_base_packages() {
-    packages=(#"rootfs.sh"
-              #"base_files.sh"
-              #"busybox.sh"
-              #"iana-etc.sh"
-              #"kernel.sh"
-              #"bcm2835_firmware.sh"
-              #"bootscripts.sh"
-              #"network.sh"
-              #"dropbear.sh"
-              #"wireless_tools.sh"
-              #"e2fsprogs.sh"
-              #"musl-libc.sh"
-              #"zlib.sh"
-              #"bash.sh"
-              #"iptables.sh"
+    packages=("rootfs.sh"
+              "base_files.sh"
+              "busybox.sh"
+              "iana-etc.sh"
+              "kernel.sh"
+              "bcm2835_firmware.sh"
+              "bootscripts.sh"
+              "network.sh"
+              "dropbear.sh"
+              "wireless_tools.sh"
+              "e2fsprogs.sh"
+              "musl-libc.sh"
+              "zlib.sh"
+              "bash.sh"
+              "iptables.sh"
               "coreutils.sh")
 
     for package in "${packages[@]}"; do
