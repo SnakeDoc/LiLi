@@ -53,7 +53,7 @@ DESTDIR="${FAKEROOT}" make install
 mkdir -pv "${FAKEROOT}/bin"
 mkdir -pv "${FAKEROOT}/usr/sbin"
 mv -v "${FAKEROOT}/usr/bin/"{cat,chgrp,chmod,chown,cp,date} "${FAKEROOT}/bin"
-mv -v "${FAKEROOT}/usr/bin/"{dd,df,echo,false,hostname,ln,ls,mkdir,mknod} "${FAKEROOT}/bin"
+mv -v "${FAKEROOT}/usr/bin/"{dd,df,echo,false,ln,ls,mkdir,mknod} "${FAKEROOT}/bin"
 mv -v "${FAKEROOT}/usr/bin/"{mv,pwd,rm,rmdir,stty,true,uname} "${FAKEROOT}/bin"
 mv -v "${FAKEROOT}/usr/bin/chroot" "${FAKEROOT}/usr/sbin"
 
