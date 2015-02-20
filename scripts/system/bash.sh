@@ -331,6 +331,14 @@ alias l.='ls -d .* --color=auto' 2>/dev/null
 alias ls='ls --color=auto' 2>/dev/null
 EOF
 
+# /etc/profile.d/which2.sh
+cat > "${FAKEROOT}/etc/profile.d/which2.sh" << "EOF"
+# Initialization script for bash and sh
+
+# export AFS if you are in AFS environment
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+EOF
+
 # cleanup
 cd "${CLFS_SOURCES}/"
 rm -rf "${PKG_NAME}-${PKG_VERSION}"
