@@ -1,0 +1,23 @@
+avoid regenerating man pages all the time (since the locally compiled binaries
+will always be newer than the bundled man pages)
+
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -14038,7 +14038,6 @@ check-local: check-texinfo
+ distclean-local:
+ 	test x$(srcdir) = x$(builddir) || rm -f $(ALL_MANS)
+ 
+-$(ALL_MANS): $(mandeps)
+ man/dynamic-deps.mk: Makefile
+ 	$(AM_V_GEN)rm -f $@ $@-t
+ 	$(AM_V_at)for man in $(ALL_MANS); do				\
+@@ -14058,9 +14057,6 @@ man/dynamic-deps.mk: Makefile
+ 	done > $@-t							\
+ 	&& mv $@-t $@
+ 
+-# Include the generated man dependencies.
+-@AMDEP_TRUE@@am__include@ man/dynamic-deps.mk
+-
+ .x.1:
+ 	$(AM_V_GEN)name=`echo $@ | sed 's|.*/||; s|\.1$$||'` || exit 1;	\
+ 	case $$name in							\
