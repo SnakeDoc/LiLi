@@ -20,7 +20,7 @@ A minimalist and performant GNU/Linux operating system.
                 coreutils-8.23
                 iana-etc-2.30
                 zlib-1.2.8
-                dropbear-2014.66
+                dropbear-2015.67
                 wireless_tools.29
                 e2fsprogs-1.42.12
                 bash-4.3.30
@@ -30,5 +30,5 @@ A minimalist and performant GNU/Linux operating system.
                 Broadcom bootloader (BCM2835)
 
 
-Last Updated: 2015-02-19
+Last Updated: 2015-02-20
 
